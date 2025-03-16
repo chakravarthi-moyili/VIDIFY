@@ -1,6 +1,4 @@
 import threading
-import tinymongo
-from tinymongo import TinyMongoClient
 import os
 import json
 
@@ -20,7 +18,7 @@ class VideoMetadataDB:
         """Initialize the TinyMongo database."""
         try:
             # Ensure the database directory exists
-            db_dir = './.database'
+            db_dir = './videosDatabase'
             os.makedirs(db_dir, exist_ok=True)  # Create if not exists
             
             self.db_path = os.path.join(db_dir, 'videos_database.json')
@@ -33,6 +31,7 @@ class VideoMetadataDB:
             print(f"Error initializing database: {e}")
 
     def _load_data(self):
+        """Load data from the JSON file."""
         try:
             with open(self.db_path, 'r') as f:
                 return json.load(f)
@@ -57,6 +56,7 @@ class VideoMetadataDB:
             return False
 
     def _save_data(self):
+        """Save data to the JSON file."""
         try:
             with open(self.db_path, 'w') as f:
                 json.dump(self.data, f, indent=4)
