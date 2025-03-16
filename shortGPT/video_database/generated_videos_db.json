@@ -1,0 +1,24 @@
+{
+    "videos": [
+      {
+        "generate_vid_id": "vid_2023-10-15_12-34-56",
+        "generated_video": "videos/2023-10-15_12-34-56 - My Video Title.mp4",
+        "used_script": "This is the script used to generate the video...",
+        "orientation": "vertical",
+        "used_videos": {
+          "clip_1": {
+            "source": "https://example.com/video1.mp4",
+            "start_time": "00:00:00",
+            "end_time": "00:00:10",
+            "description": "Clip 1 used in the generated video"
+          },
+          "clip_2": {
+            "source": "https://example.com/video2.mp4",
+            "start_time": "00:00:10",
+            "end_time": "00:00:20",
+            "description": "Clip 2 used in the generated video"
+          }
+        }
+      }
+    ]
+  }

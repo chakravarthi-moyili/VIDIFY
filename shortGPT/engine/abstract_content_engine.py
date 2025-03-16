@@ -61,18 +61,30 @@ class AbstractContentEngine(ABC):
         return self._db_ready_to_upload
 
     def makeContent(self):
+        max_step = len(self.stepDict)  # Get the maximum step number
         while (not self.isShortDone()):
             currentStep = self._db_last_completed_step + 1
+
+            if currentStep > max_step:
+                print("Video generation complete.")
+                break  # Exit the loop if we've done all the steps
+
             if currentStep not in self.stepDict:
                 raise Exception(f'Incorrect step {currentStep}')
+
             if self.stepDict[currentStep].__name__ == "_editAndRenderShort":
                 yield currentStep, f'Current step ({currentStep} / {self.get_total_steps()}) : ' + "Preparing rendering assets..."
             else:
                 yield currentStep, f'Current step ({currentStep} / {self.get_total_steps()}) : ' + self.stepDict[currentStep].__name__
+
             if self.logger is not self.default_logger:
                 print(f'Step {currentStep} {self.stepDict[currentStep].__name__}')
+
             self.stepDict[currentStep]()
             self._db_last_completed_step = currentStep
+
+        print("makeContent finished.") # Add this line
+
 
     def get_video_output_path(self):
         return self._db_video_path
