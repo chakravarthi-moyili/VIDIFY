@@ -4,7 +4,7 @@
             "_id": "vid_2025-03-17_10-05-55",
             "data": {
                 "generate_vid_id": "vid_2025-03-17_10-05-55",
-                "generated_video": "videos/2025-03-17_10-05-55 - Investing 101 Your Starting Guide to the Stock Market .mp4",
+                "generated_video": "assets/videos/2025-03-17_10-05-55-Investing101YourStartingGuidetotheStockMarket .mp4",
                 "used_script": "Are you new to the stock market? Start by educating yourself about basic terms and concepts. Set clear investment goals and stay disciplined. Diversify your portfolio to manage risk, and invest for the long term. Remember, emotional decisions can lead to mistakes. Stay informed, and you'll thrive in the market!",
                 "orientation": "vertical",
                 "used_videos": {
@@ -45,7 +45,7 @@
             "_id": "vid_2025-03-17_10-40-51",
             "data": {
                 "generate_vid_id": "vid_2025-03-17_10-40-51",
-                "generated_video": "videos/2025-03-17_10-40-51 - Stay Safe from Online Scams .mp4",
+                "generated_video": "assets/videos/2025-03-17_10-40-51-StaySafefromOnlineScams.mp4",
                 "used_script": "Online scams are everywhere, targeting unsuspecting victims. These scams often come in the form of phishing emails, fake websites, or dubious offers. Always verify the source before clicking on links or sharing personal information. Stay alert, protect your data, and report suspicious activities to ensure a safer online experience.",
                 "orientation": "landscape",
                 "used_videos": {
