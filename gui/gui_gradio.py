@@ -18,13 +18,70 @@ class ShortGptUI(AbstractBaseUI):
 
     def create_interface(self):
         '''Create Gradio interface'''
-        with gr.Blocks(theme=gr.themes.Default(spacing_size=gr.themes.sizes.spacing_sm), css="footer {visibility: hidden}", title="AI-Powered Video Generator") as shortGptUI:
-            with gr.Row(variant='compact'):
-                gr.HTML(GradioComponentsHTML.get_html_header())
+        css = """
+        .banner-row {
+            # background-color: #007bff;
+            padding: 5px;
+            margin: 0px;
+            border-radius: 0px;
+        }
+        .title {
+            text-align: center;
+            color: white;
+            font-size: 2rem;
+            margin: 0px;
+        }
+        .subtitle-row {
+            padding: 5px 50px;
+            margin: 0px;
+            border-radius: 0px;
+        }
+        .subtitle {
+            text-align: center;
+            color: white;
+            # font-size: 0.6rem;
+            margin: 0px;
+        }
+        """
+        
+        with gr.Blocks(theme=gr.themes.Default(spacing_size=gr.themes.sizes.spacing_sm), 
+                    css=css + "footer {visibility: hidden}", 
+                    title="AI-Powered Video Generator") as shortGptUI:
+            with gr.Row(variant='compact', elem_classes="banner-row"):
+                with gr.Column() as app:
+                    # Banner row with blue background
+                    with gr.Row(equal_height=True, variant="compact", elem_classes="banner-row"):
+                        # Logo column (left)
+                        with gr.Column(scale=1, min_width=100):
+                            gr.Image("assets/img/logo.png", show_label=False, show_download_button=False, show_fullscreen_button=False, container=False)
+                        
+                        # Title column (center)
+                        with gr.Column(scale=5):
+                            # Inner row for the second logo
+                            with gr.Row(elem_classes="banner-row"):
+                                # with gr.Column(scale=2):
+                                #     pass
+                                with gr.Column(scale=1):
+                                    gr.Image("assets/img/logo.png", show_label=False, show_download_button=False, show_fullscreen_button=False, container=False)
+                                # with gr.Column(scale=2):
+                                #     pass
 
+                            with gr.Row():
+                                # Title row
+                                gr.Markdown("# VIDIFY – The Ultimate AI-Powered Video Automation Framework", elem_classes="title")
+                    
+                    # Subtitle row with same blue background
+            with gr.Row(elem_classes="subtitle-row"):
+                        gr.Markdown(
+                            "#### VIDIFY automates video production with AI-driven editing, multilingual voiceovers, and media sourcing. Perfect for advertising, marketing, news, reports, education, and more, it streamlines content creation—letting you focus on storytelling, not technical hurdles.",
+                            elem_classes="subtitle"
+                        )
+            
+            # Add components outside the inner blocks
             self.content_automation = GradioContentAutomationUI(shortGptUI).create_ui()
             # self.asset_library_ui = AssetLibrary().create_ui()
             # self.config_ui = ConfigUI().create_ui()
+            
         return shortGptUI
 
     def launch(self):

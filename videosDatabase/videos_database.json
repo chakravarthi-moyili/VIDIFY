@@ -1,0 +1,44 @@
+{
+    "videos": [
+        {
+            "_id": "vid_2023-10-01_12-34-56",
+            "data": {
+                "generate_vid_id": "vid_2023-10-01_12-34-56",
+                "generated_video": "videos/2023-10-01_12-34-56 - MyVideo.mp4",
+                "used_script": "This is the script used for the video.",
+                "orientation": "vertical",
+                "used_videos": {
+                    "clip_1": {
+                        "source": "https://example.com/clip1.mp4",
+                        "start_time": 0,
+                        "end_time": 10,
+                        "description": "Clip 1"
+                    }
+                }
+            }
+        },
+        {
+            "_id": "vid_2023-10-02_09-15-30",
+            "data": {
+                "generate_vid_id": "vid_2023-10-02_09-15-30",
+                "generated_video": "videos/2023-10-02_09-15-30 - AnotherVideo.mp4",
+                "used_script": "This is another script for a different video.",
+                "orientation": "landscape",
+                "used_videos": {
+                    "clip_1": {
+                        "source": "https://example.com/clip2.mp4",
+                        "start_time": 5,
+                        "end_time": 15,
+                        "description": "Clip 1"
+                    },
+                    "clip_2": {
+                        "source": "https://example.com/clip3.mp4",
+                        "start_time": 20,
+                        "end_time": 30,
+                        "description": "Clip 2"
+                    }
+                }
+            }
+        }
+    ]
+}

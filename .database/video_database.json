@@ -1,0 +1,18 @@
+{
+    "_id": "vid_20240315094530",
+    "data": {
+      "generate_vid_id": "vid_20240315094530",
+      "generated_video": "videos/...mp4",
+      "used_script": "...",
+      "orientation": "vertical",
+      "used_videos": {
+        "clip_1": {
+          "source": "https://...",
+          "start_time": 0.5,
+          "end_time": 10.2,
+          "description": "Clip 1 used in the generated video"
+        }
+      }
+    }
+  }
+  

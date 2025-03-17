@@ -2,12 +2,21 @@ class GradioComponentsHTML:
 
     @staticmethod
     def get_html_header() -> str:
-        '''Create HTML for the header'''
+        '''Create HTML for the header with flexbox layout'''
         return '''
-            <link rel="icon" type="image/x-icon" href="assets/img/logo.ico">
-            <div padding: 5px;" style="background-color: #007bff; width: 100%; height: 100%">
-            <h1 style="font-size: 2rem; text-align: center;">VIDIFY</h1>
-            <h3 style="font-size: 1rem; text-align: center">Your AI-powered video creation tool.</h3>
+            <div style="display: flex; width: 100%; height: 100%; padding: 5px; background-color: #007bff;">
+                <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
+                    <img src="/app/assets/img/logo.png" alt="Logo" style="max-width: 100%; height: auto;">
+                </div>
+                <div style="flex: 5; display: flex; flex-direction: column; justify-content: center;">
+                <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
+                    <img src="/app/assets/img/logo.png" alt="Logo" style="max-width: 100%; height: auto;">
+                </div>
+                <h1 style="font-size: 2rem; text-align: center; color: white;">VIDIFY – The Ultimate AI-Powered Video Automation Framework</h1>
+                </div>
+            </div>
+            <div style="weight: 100%; padding: 5px 50px">
+                <h3 style="font-size: 0.8rem; text-align: center; color: white;">VIDIFY automates video production with AI-driven editing, multilingual voiceovers, and media sourcing. Perfect for advertising, marketing, news, reports, education, and more, it streamlines content creation—letting you focus on storytelling, not technical hurdles.</h3>
             </div>
         '''
 
