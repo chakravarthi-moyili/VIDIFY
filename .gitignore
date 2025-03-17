@@ -19,6 +19,7 @@ videos/*
 flagged/
 .vscode
 .env
+docker-compose.yml
 ShortGPT.egg-info
 dist
 build
