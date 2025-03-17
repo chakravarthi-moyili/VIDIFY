@@ -62,13 +62,13 @@ class ShortGptUI(AbstractBaseUI):
                                 # with gr.Column(scale=2):
                                 #     pass
                                 with gr.Column(scale=1):
-                                    gr.Image("assets/img/logo.png", show_label=False, show_download_button=False, show_fullscreen_button=False, container=False)
+                                    gr.Image("assets/img/vidify_logo.png", show_label=False, show_download_button=False, show_fullscreen_button=False, container=False, height=80)
                                 # with gr.Column(scale=2):
                                 #     pass
 
                             with gr.Row():
                                 # Title row
-                                gr.Markdown("# VIDIFY – The Ultimate AI-Powered Video Automation Framework", elem_classes="title")
+                                gr.Markdown("# The Ultimate AI-Powered Video Automation Framework", elem_classes="title")
                     
                     # Subtitle row with same blue background
             with gr.Row(elem_classes="subtitle-row"):

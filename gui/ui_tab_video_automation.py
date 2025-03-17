@@ -45,6 +45,7 @@ class VideoAutomationUI(AbstractComponentUI):
         # Sample video paths - update these with your actual sample videos
         self.landscape_sample = "assets/videos/Sample_Landscape.mp4"
         self.vertical_sample = "assets/videos/Sample_Verticals.mp4"
+        # self.progress_counter = 0
 
     def check_api_keys(self):
         """Check if required API keys are available"""
@@ -80,16 +81,17 @@ class VideoAutomationUI(AbstractComponentUI):
         """Apply corrections to the script"""
         return gpt_chat_video.correctScript(script, correction)
 
-    def setup_voice_module(self):
+    def setup_voice_module(self, language):
         """Set up the EdgeTTS voice module as specified"""
         try:
             # Only use EdgeTTS as specified
-            self.voice_module = EdgeTTSVoiceModule(EDGE_TTS_VOICENAME_MAPPING[self.language]['male'])
+            self.voice_module = EdgeTTSVoiceModule(EDGE_TTS_VOICENAME_MAPPING[language]['male'])
+            print(language)
             return True, "Voice module set up successfully"
         except Exception as e:
             return False, f"Error setting up voice module: {str(e)}"
 
-    def make_video(self, script, orientation_choice, text_position, quality, duration):
+    def make_video(self, script, orientation_choice, text_position, quality, duration, progress=gr.Progress()):
         """Generate the video based on script and settings"""
         self.state = Chatstate.MAKE_VIDEO
         
@@ -105,7 +107,7 @@ class VideoAutomationUI(AbstractComponentUI):
         self.duration = duration
         
         # Set up voice module
-        success, message = self.setup_voice_module()
+        success, message = self.setup_voice_module(self.language)
         if not success:
             return None, message
         
@@ -126,22 +128,15 @@ class VideoAutomationUI(AbstractComponentUI):
                 # duration=self.duration
             )
             
-            # Set up progress tracking
             num_steps = videoEngine.get_total_steps()
             progress_counter = 0
-            
+
             def logger(prog_str):
-                nonlocal progress_counter
-                # progress(progress_counter / num_steps, f"Creating video - {progress_counter} - {prog_str}")
-                progress_counter += 1
-            
+                progress(progress_counter / (num_steps), f"Creating video - {progress_counter} - {prog_str}")
             videoEngine.set_logger(logger)
-            
-            # Generate the video
             for step_num, step_info in videoEngine.makeContent():
-                # progress(progress_counter / num_steps, f"Creating video - {step_info}")
-                progress_counter += 1
-            
+                progress(progress_counter / (num_steps), f"Creating video - {step_info}")
+                progress_counter += 1            
             # Get the output path
             self.video_path = videoEngine.get_video_output_path()
             return self.video_path, script
@@ -207,6 +202,7 @@ class VideoAutomationUI(AbstractComponentUI):
             return gr.update(value=self.landscape_sample, visible=True)
         else:  # vertical
             return gr.update(value=self.vertical_sample, visible=True)
+        
 
     def create_ui(self):
         # Create blocks with custom CSS
@@ -291,7 +287,9 @@ class VideoAutomationUI(AbstractComponentUI):
                                         label="Video Duration"
                                     )
                             
-                            self.generate_video_button = gr.Button("Generate Video", variant="primary", size="lg",)
+                            # Add a progress bar
+                            # self.progress = gr.Progress()
+                            self.generate_video_button = gr.Button("Generate Video", variant="primary", size="lg")
                             self.error_output = gr.Textbox(label="Status", visible=False)
                     
                     # Fourth Block: Generated Video
@@ -301,7 +299,7 @@ class VideoAutomationUI(AbstractComponentUI):
                             self.video_output = gr.Video(label="Generated Video")
                             with gr.Row():
                                 self.download_video_button = gr.Button("Download Video", variant="primary", visible=False)
-                                self.open_folder_button = gr.Button("Open Videos Folder", visible=False)
+                                # self.open_folder_button = gr.Button("Open Videos Folder", visible=False)
                             
                             # Display the generated script below the video
                             self.script_output_below_video = gr.Textbox(label="Generated Script", lines=10, visible=False)
@@ -328,7 +326,7 @@ class VideoAutomationUI(AbstractComponentUI):
                 
                 # Add another column beside the sample videos with scale 2.5
                 with gr.Column(scale=2.5):
-                    gr.Markdown("## Additional Content")
+                    gr.Markdown("## Previous Videos")
                     # Add any additional content or components here
                     self.additional_content = gr.Textbox(label="Additional Content", lines=5, placeholder="Enter additional content here...")
             
@@ -406,7 +404,7 @@ class VideoAutomationUI(AbstractComponentUI):
                     self.video_block,
                     self.video_output,
                     self.download_video_button,
-                    self.open_folder_button,
+                    # self.open_folder_button,
                     self.script_output_below_video
                 ]
             ).then(
@@ -415,7 +413,8 @@ class VideoAutomationUI(AbstractComponentUI):
                 outputs=[self.sample_buttons_row, self.sample_video_display]
             ).then(
                 fn=lambda: gr.update(visible=False),
-                outputs=[self.error_output]
+                outputs=[self.error_output],
+
             )
             
             # Video download
@@ -426,8 +425,8 @@ class VideoAutomationUI(AbstractComponentUI):
             )
             
             # Open videos folder
-            self.open_folder_button.click(
-                fn=lambda: AssetComponentsUtils.start_file(os.path.abspath("videos/"))
-            )
+            # self.open_folder_button.click(
+            #     fn=lambda: AssetComponentsUtils.start_file(os.path.abspath("videos/"))
+            # )
 
         return self.video_automation
