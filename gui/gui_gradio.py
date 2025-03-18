@@ -62,7 +62,7 @@ class ShortGptUI(AbstractBaseUI):
                                 # with gr.Column(scale=2):
                                 #     pass
                                 with gr.Column(scale=1):
-                                    gr.Image("assets/img/vidify_logo.png", show_label=False, show_download_button=False, show_fullscreen_button=False, container=False, height=80)
+                                    gr.Image("assets/img/vidify_logo.png", show_label=False, show_download_button=False, show_fullscreen_button=False, container=False, height=40)
                                 # with gr.Column(scale=2):
                                 #     pass
 

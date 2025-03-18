@@ -124,7 +124,7 @@ class VideoAutomationUI(AbstractComponentUI):
                 script=script, 
                 isVerticalFormat=self.isVertical,
                 api_source=self.api_source,
-                # text_position=self.text_position,
+                text_position=self.text_position,
                 # quality=self.quality,
                 # duration=self.duration
             )
@@ -163,33 +163,33 @@ class VideoAutomationUI(AbstractComponentUI):
             return gr.update(visible=True), gr.update(visible=True), gr.update(value=script, visible=True)
         return gr.update(visible=False), gr.update(visible=False), gr.update(value="", visible=False)
 
-    def update_video_block_visibility(self, video_path, script):
-        """Update the visibility of video block based on video path"""
-        if video_path and os.path.exists(video_path):
-            return (
-                gr.update(visible=True),
-                gr.update(value=video_path, visible=True),
-                gr.update(visible=True),
-                gr.update(visible=True),
-                gr.update(visible=True),
-                gr.update(value=script, visible=True)
-            )
-        return (
-            gr.update(visible=False),
-            gr.update(value=None, visible=False),
-            gr.update(visible=False),
-            gr.update(visible=False),
-            gr.update(visible=False),
-            gr.update(value="", visible=False)
-        )
+    # def update_video_block_visibility(self, video_path, script):
+    #     """Update the visibility of video block based on video path"""
+    #     if video_path and os.path.exists(video_path):
+    #         return (
+    #             gr.update(visible=True),
+    #             gr.update(value=video_path, visible=True),
+    #             gr.update(visible=True),
+    #             gr.update(visible=True),
+    #             gr.update(visible=True),
+    #             gr.update(value=script, visible=True)
+    #         )
+    #     return (
+    #         gr.update(visible=False),
+    #         gr.update(value=None, visible=False),
+    #         gr.update(visible=False),
+    #         gr.update(visible=False),
+    #         gr.update(visible=False),
+    #         gr.update(value="", visible=False)
+    #     )
 
-    def update_after_video_generation(self, video_path):
+    def update_after_video_generation(self, video_path, script):
         """Update UI after video generation"""
         self.video_generated = True
         # Replace sample video with generated video and hide sample buttons
         if video_path and os.path.exists(video_path):
-            return gr.update(visible=False), gr.update(value=video_path)
-        return gr.update(visible=True), gr.update()
+            return gr.update(visible=False), gr.update(value=video_path), gr.update(value=script, visible=True)
+        return gr.update(visible=True), gr.update(value=self.landscape_sample),gr.update(value="", visible=False)
 
     def handle_download(self, video_path):
         """Handle video download"""
@@ -211,57 +211,17 @@ class VideoAutomationUI(AbstractComponentUI):
             data = json.load(file)
         return data
 
-    # Function to generate video blocks
-    def load_videos(self):
-        """Load video paths from JSON data."""
-        file_path = "videosDatabase/videos_database.json"
-        data = self.load_json_data(file_path)
-
-        # Extract video paths
-        video_paths = []
-        for video in data["videos"]:
-            # Add the generated video
-            video_paths.append(video["data"]["generated_video"])
-
-            # Add the used video clips
-            # for clip_data in video["data"]["used_videos"].values():
-            #     video_paths.append(clip_data["source"])
-
-        return video_paths
-    
-    def update_video_display(self):
-        """Update the video display with new videos."""
-        video_paths = self.load_videos()  # Load video paths from JSON
-
-        # Clear existing video components
-        # self.video_components.clear()
-
-        # Create new video components
-        with gr.Column() as video_column:
-            for video_path in video_paths:
-                video_component = gr.Video(
-                    value=video_path,
-                    height=90,
-                    width=60,
-                    label="Generated Video",
-                    interactive=False  # Make the video non-editable
-                )
-                self.video_components.append(video_component)
-
-        return video_column
+   
     def update_video_titles(self):
         """Update the video titles column with clickable titles."""
-        video_data = self.load_videos()  # Load video data from JSON
+        # video_data = self.load_videos()  # Load video data from JSON
 
-        # Clear existing video titles
-        # self.video_titles_column.clear()
-
-        # Create new video titles
-        with gr.Column() as video_titles_column:
+        # Create a new column to replace the existing one
+        with gr.Column() as new_video_titles_column:
             file_path = "videosDatabase/videos_database.json"
             data = self.load_json_data(file_path)
             for video in data["videos"]:
-                video_title = video["data"]["generate_vid_id"]  # Assuming each video has a "title" field
+                video_title = video["data"]["generated_video_title"]  # Assuming each video has a "title" field
                 video_path = video["data"]["generated_video"]
                 script = video["data"]["used_script"]  # Assuming each video has a "script" field
                 used_videos = video["data"]["used_videos"]  # Assuming each video has a "used_videos" field
@@ -274,24 +234,23 @@ class VideoAutomationUI(AbstractComponentUI):
                     fn=lambda video_path=video_path, script=script, used_videos=used_videos: [
                         gr.update(value=video_path),  # Update the sample video display
                         gr.update(value=script, visible=True),  # Update the script
-                        self.update_used_videos(used_videos)  # Update the used videos
+                        self.update_used_videos(used_videos),
+                        gr.update(visible=False)  # Update the used videos
                     ],
                     outputs=[
                         self.sample_video_display,
                         self.selected_video_script,
-                        self.used_videos_row
+                        self.used_videos_row,
+                        self.sample_buttons_row
                     ]
                 )
 
-        return video_titles_column
+        return new_video_titles_column
 
     def update_used_videos(self, used_videos):
         """Update the used videos row with the provided video paths."""
-        # Clear existing used videos
-        # self.used_videos_row.clear()
-
-        # Create new used videos
-        with gr.Row() as used_videos_row:
+        # Create a new row for used videos
+        with gr.Row() as new_used_videos_row:
             for clip_id, clip_data in used_videos.items():
                 clip_path = clip_data["source"]
                 gr.Video(
@@ -301,7 +260,10 @@ class VideoAutomationUI(AbstractComponentUI):
                     interactive=False
                 )
 
-        return used_videos_row
+        # Replace the existing used_videos_row with the new one
+        # self.used_videos_row = new_used_videos_row
+
+        return new_used_videos_row
 
     def create_ui(self):
             # Create blocks with custom CSS
@@ -337,71 +299,7 @@ class VideoAutomationUI(AbstractComponentUI):
                                         self.edit_script_button = gr.Button("Edit Script", visible=True)  # Initially visible
                         
                         # Third Block: Video Generation Settings
-                        with gr.Row():
-                            with gr.Column():
-                                gr.Markdown("## Parameters")
-                                
-                                with gr.Row():
-                                    with gr.Column(scale=1):
-                                        gr.Markdown("### Orientation")
-                                        self.orientation_dropdown = gr.Dropdown(
-                                            choices=["Vertical", "Landscape"], 
-                                            label="Format",
-                                            value="Vertical"
-                                        )
-                                    
-                                    with gr.Column(scale=1):
-                                        gr.Markdown("### Language")
-                                        self.language_dropdown = gr.Dropdown(
-                                            choices=[lang.value for lang in Language], 
-                                            label="Content Language",
-                                            value=Language.ENGLISH.value
-                                        )
-                                
-                                with gr.Row():
-                                    with gr.Column(scale=1):
-                                        gr.Markdown("### Text Position")
-                                        self.text_position_dropdown = gr.Dropdown(
-                                            choices=["Top", "Middle", "Bottom"], 
-                                            label="Caption Position",
-                                            value="Middle"  # Changed default to Middle
-                                        )
-                                    
-                                    with gr.Column(scale=1):
-                                        gr.Markdown("### Quality")
-                                        self.quality_dropdown = gr.Dropdown(
-                                            choices=["SD", "HD", "4k"], 
-                                            label="Video Quality",
-                                            value="4k"  # Changed default to 4k
-                                        )
-                                
-                                with gr.Row():
-                                    with gr.Column():
-                                        gr.Markdown("### Duration (Seconds)")
-                                        self.duration_slider = gr.Slider(
-                                            minimum=1,
-                                            maximum=60,
-                                            value=15,  # Default value set to 15
-                                            step=1,
-                                            label="Video Duration"
-                                        )
-                                
-                                # Add a progress bar
-                                # self.progress = gr.Progress()
-                                self.generate_video_button = gr.Button("Generate Video", variant="primary", size="lg")
-                                self.error_output = gr.Textbox(label="Status", visible=False)
                         
-                        # Fourth Block: Generated Video
-                        with gr.Row(visible=False) as self.video_block:
-                            with gr.Column():
-                                gr.Markdown("## Generated Video")
-                                self.video_output = gr.Video(label="Generated Video")
-                                with gr.Row():
-                                    self.download_video_button = gr.Button("Download Video", variant="primary", visible=False)
-                                    # self.open_folder_button = gr.Button("Open Videos Folder", visible=False)
-                                
-                                # Display the generated script below the video
-                                self.script_output_below_video = gr.Textbox(label="Generated Script", lines=10, visible=False)
                     
                     with gr.Column(scale=7.5):
                         # Previews and Previous Videos Columns
@@ -427,14 +325,83 @@ class VideoAutomationUI(AbstractComponentUI):
                                 # Display the script and used videos below the selected video
                                 self.selected_video_script = gr.Textbox(label="Script", lines=10, visible=False)
                                 self.used_videos_row = gr.Row(visible=False)  # Row to display used videos
-                            
-                            # Previous Videos Column
-                            with gr.Column(scale=2.5):
-                                gr.Markdown("## Previous Videos")
-                                self.video_titles_column = gr.Column()  # Column to hold video titles
 
-                                # Add a button to refresh the video display
-                                refresh_button = gr.Button("Refresh Videos", variant="secondary")
+                            with gr.Column(scale=2.5):
+                                with gr.Row():
+                                    with gr.Column():
+                                        gr.Markdown("## Parameters")
+                                        
+                                        with gr.Row():
+                                            with gr.Column(scale=1):
+                                                gr.Markdown("### Orientation")
+                                                self.orientation_dropdown = gr.Dropdown(
+                                                    choices=["Vertical", "Landscape"], 
+                                                    label="Format",
+                                                    value="Vertical"
+                                                )
+                                            
+                                            with gr.Column(scale=1):
+                                                gr.Markdown("### Language")
+                                                self.language_dropdown = gr.Dropdown(
+                                                    choices=[lang.value for lang in Language], 
+                                                    label="Content Language",
+                                                    value=Language.ENGLISH.value
+                                                )
+                                        
+                                        with gr.Row():
+                                            with gr.Column(scale=1):
+                                                gr.Markdown("### Text Position")
+                                                self.text_position_dropdown = gr.Dropdown(
+                                                    choices=["Top", "Middle", "Bottom"], 
+                                                    label="Caption Position",
+                                                    value="Middle"  # Changed default to Middle
+                                                )
+                                            
+                                            with gr.Column(scale=1):
+                                                gr.Markdown("### Quality")
+                                                self.quality_dropdown = gr.Dropdown(
+                                                    choices=["SD", "HD", "4k"], 
+                                                    label="Video Quality",
+                                                    interactive=False,
+                                                    value="4k"  # Changed default to 4k
+                                                )
+                                        
+                                        with gr.Row():
+                                            with gr.Column():
+                                                gr.Markdown("### Duration (Seconds)")
+                                                self.duration_slider = gr.Slider(
+                                                    minimum=1,
+                                                    maximum=60,
+                                                    value=15,  # Default value set to 15
+                                                    step=1,
+                                                    label="Video Duration"
+                                                )
+                                        
+                                        # Add a progress bar
+                                        # self.progress = gr.Progress()
+                                        self.generate_video_button = gr.Button("Generate Video", variant="primary", size="lg")
+                                        self.error_output = gr.Textbox(label="Status", visible=False)
+                                
+                                # Fourth Block: Generated Video
+                                with gr.Row(visible=False) as self.video_block:
+                                    with gr.Column():
+                                        gr.Markdown("## Generated Video")
+                                        self.video_output = gr.Video(label="Generated Video")
+                                        with gr.Row():
+                                            self.download_video_button = gr.Button("Download Video", variant="primary", visible=False)
+                                            # self.open_folder_button = gr.Button("Open Videos Folder", visible=False)
+                                        
+                                        # Display the generated script below the video
+                                        self.script_output_below_video = gr.Textbox(label="Generated Script", lines=10, visible=False)
+                            
+                with gr.Row():
+                    # Previous Videos Column
+                    with gr.Column(scale=2.5):
+                        gr.Markdown("## Previous Videos")
+                        self.video_titles_column = gr.Column()  # Column to hold video titles
+
+                        # Add a button to refresh the video display
+                        refresh_button = gr.Button("Refresh Videos", variant="secondary")
 
                 # Event Handlers
                 
@@ -503,20 +470,20 @@ class VideoAutomationUI(AbstractComponentUI):
                         self.duration_slider
                     ],
                     outputs=[self.video_output, self.script_output_below_video]  # Updated to use script_output_below_video
-                ).then(
-                    fn=self.update_video_block_visibility,
-                    inputs=[self.video_output, self.script_output_below_video],
-                    outputs=[
-                        self.video_block,
-                        self.video_output,
-                        self.download_video_button,
-                        # self.open_folder_button,
-                        self.script_output_below_video
-                    ]
+                # ).then(
+                #     fn=self.update_video_block_visibility,
+                #     inputs=[self.video_output, self.script_output_below_video],
+                #     outputs=[
+                #         self.video_block,
+                #         self.video_output,
+                #         self.download_video_button,
+                #         # self.open_folder_button,
+                #         self.script_output_below_video
+                #     ]
                 ).then(
                     fn=self.update_after_video_generation,
-                    inputs=[self.video_output],
-                    outputs=[self.sample_buttons_row, self.sample_video_display]
+                    inputs=[self.video_output,self.script_output_below_video],
+                    outputs=[self.sample_buttons_row, self.sample_video_display, self.selected_video_script]
                 ).then(
                     fn=lambda: gr.update(visible=False),
                     outputs=[self.error_output],
@@ -527,7 +494,7 @@ class VideoAutomationUI(AbstractComponentUI):
                 self.download_video_button.click(
                     fn=self.handle_download,
                     inputs=[self.video_output],
-                    outputs=[gr.File()]
+                    # outputs=[gr.File()]
                 )
                 
                 # Refresh videos
@@ -540,4 +507,3 @@ class VideoAutomationUI(AbstractComponentUI):
                 self.update_video_titles()
 
             return self.video_automation
-

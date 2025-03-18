@@ -24,7 +24,7 @@ from shortGPT.database.db_handler import VideoMetadataDB
 class ContentVideoEngine(AbstractContentEngine):
 
     def __init__(self, voiceModule: VoiceModule, script: str, background_music_name="", id="",
-                 watermark=None, isVerticalFormat=False, language: Language = Language.ENGLISH, api_source = "Pexels"):
+                 watermark=None, isVerticalFormat=False, language: Language = Language.ENGLISH, api_source = "Pexels", text_position = "Middle"):
         super().__init__(id, "general_video", language, voiceModule)
         if not id:
             if (watermark):
@@ -34,6 +34,7 @@ class ContentVideoEngine(AbstractContentEngine):
             self._db_script = script
             self._db_format_vertical = isVerticalFormat
             self.api_source = api_source
+            self.text_position = text_position
 
         self.stepDict = {
             1: self._generateTempAudio,
@@ -90,10 +91,10 @@ class ContentVideoEngine(AbstractContentEngine):
         self._db_timed_video_searches = gpt_editing.getVideoSearchQueriesTimed(self._db_timed_captions)
 
         # Ensure search terms are not too specific
-        for i, ((t1, t2), search_terms) in enumerate(self._db_timed_video_searches):
-            if not search_terms or len(search_terms) < 3:
-                # Add fallback search terms if necessary
-                self._db_timed_video_searches[i][1].extend(["nature", "city", "technology"])
+        # for i, ((t1, t2), search_terms) in enumerate(self._db_timed_video_searches):
+        #     if not search_terms or len(search_terms) < 3:
+        #         # Add fallback search terms if necessary
+        #         self._db_timed_video_searches[i][1].extend(["nature", "city", "technology"])
 
     def _generateVideoUrls(self):
         timed_video_searches = self._db_timed_video_searches
@@ -112,15 +113,15 @@ class ContentVideoEngine(AbstractContentEngine):
                     used_links.append(url.split('.hd')[0])
                     break
             
-            if not url:
-                # Log a warning and skip this section
-                print(f"Warning: No video found for search terms: {search_terms}. Skipping this section.")
-                continue  # Skip this section instead of raising an error
+            # if not url:
+            #     # Log a warning and skip this section
+            #     print(f"Warning: No video found for search terms: {search_terms}. Skipping this section.")
+            #     continue  # Skip this section instead of raising an error
             
             timed_video_urls.append([[t1, t2], url])
         
-        if not timed_video_urls:
-            raise ValueError("No videos found for any of the search terms. Please try different search terms or check your API keys.")
+        # if not timed_video_urls:
+        #     raise ValueError("No videos found for any of the search terms. Please try different search terms or check your API keys.")
         
         self._db_timed_video_urls = timed_video_urls
 
@@ -158,7 +159,25 @@ class ContentVideoEngine(AbstractContentEngine):
                                                                              'set_time_start': t1,
                                                                              'set_time_end': t2})
             if (self._db_format_vertical):
-                caption_type = EditingStep.ADD_CAPTION_SHORT_ARABIC if self._db_language == Language.ARABIC.value else EditingStep.ADD_CAPTION_SHORT
+                if(self.text_position == "Middle"):
+                    caption_type = EditingStep.ADD_CAPTION_SHORT_ARABIC if self._db_language == Language.ARABIC.value else EditingStep.ADD_CAPTION_SHORT
+                elif(self.text_position == "Top"):
+                    caption_type = EditingStep.ADD_CAPTION_SHORT_ARABIC_TOP if self._db_language == Language.ARABIC.value else EditingStep.ADD_CAPTION_SHORT_TOP
+                else:
+                    caption_type = EditingStep.ADD_CAPTION_SHORT_ARABIC_BOTTOM if self._db_language == Language.ARABIC.value else EditingStep.ADD_CAPTION_SHORT_BOTTOM
+            # else:
+            #     print(self.text_position, self._db_format_vertical)
+            #     if(self.text_position == "Middle"):
+            #         print("******************* Middle ", {self.text_position}, " Calling *********************")
+            #         caption_type = EditingStep.ADD_CAPTION_LANDSCAPE_ARABIC if self._db_language == Language.ARABIC.value else EditingStep.ADD_CAPTION_LANDSCAPE
+            #     elif(self.text_position == "Top"):
+            #         print("******************* Top ", {self.text_position}, " Calling *********************")
+            #         caption_type = EditingStep.ADD_CAPTION_LANDSCAPE_ARABIC_TOP if self._db_language == Language.ARABIC.value else EditingStep.ADD_CAPTION_LANDSCAPE_TOP
+            #     else:
+            #         print("******************* Bottom ", {self.text_position}, " Calling *********************")
+            #         caption_type = EditingStep.ADD_CAPTION_LANDSCAPE_ARABIC_BOTTOM if self._db_language == Language.ARABIC.value else EditingStep.ADD_CAPTION_LANDSCAPE_BOTTOM
+            #  if (self._db_format_vertical):
+            #     caption_type = EditingStep.ADD_CAPTION_SHORT_ARABIC if self._db_language == Language.ARABIC.value else EditingStep.ADD_CAPTION_SHORT
             else:
                 caption_type = EditingStep.ADD_CAPTION_LANDSCAPE_ARABIC if self._db_language == Language.ARABIC.value else EditingStep.ADD_CAPTION_LANDSCAPE
 
