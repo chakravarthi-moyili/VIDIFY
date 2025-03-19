@@ -27,7 +27,7 @@
 			{
 				"type": "screen_position",
 				"param": {
-					"pos": ["center", 820]
+					"pos": ["center", "center"]
 				}
 			}
 		]
