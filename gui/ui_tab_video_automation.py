@@ -46,6 +46,7 @@ class VideoAutomationUI(AbstractComponentUI):
         # Sample video paths - update these with your actual sample videos
         self.landscape_sample = "assets/videos/Sample_Landscape.mp4"
         self.vertical_sample = "assets/videos/Sample_Verticals.mp4"
+        self.loading_gif = "assets/img/loading_gif.gif"
         # self.progress_counter = 0
 
     def check_api_keys(self):
@@ -188,8 +189,8 @@ class VideoAutomationUI(AbstractComponentUI):
         self.video_generated = True
         # Replace sample video with generated video and hide sample buttons
         if video_path and os.path.exists(video_path):
-            return gr.update(visible=False), gr.update(value=video_path), gr.update(value=script, visible=True)
-        return gr.update(visible=True), gr.update(value=self.landscape_sample),gr.update(value="", visible=False)
+            return gr.update(visible=False), gr.update(value=video_path, visible=True), gr.update(value=script, visible=True), gr.update(visible=False)
+        return gr.update(visible=True), gr.update(value=self.landscape_sample, visible=True),gr.update(value="", visible=False), gr.update(visible=False)
 
     def handle_download(self, video_path):
         """Handle video download"""
@@ -266,7 +267,6 @@ class VideoAutomationUI(AbstractComponentUI):
         return new_used_videos_row
 
     def create_ui(self):
-            # Create blocks with custom CSS
             with gr.Blocks() as self.video_automation:
                 # First Block: Provide Textual Input for the Video
                 with gr.Row():
@@ -318,12 +318,13 @@ class VideoAutomationUI(AbstractComponentUI):
                                             height=400,
                                             value=self.landscape_sample  # Set default sample to landscape
                                         )
+                                        self.loading_gif_display = gr.Image(visible=False, show_label=False, show_download_button=False, show_fullscreen_button=False, height=400, width=400)  # Custom HTML for loading video
                                         with gr.Row(visible=True) as self.sample_buttons_row:
                                             self.landscape_icon_button = gr.Button("🖥️ Landscape Sample", variant="secondary")
                                             self.vertical_icon_button = gr.Button("📱 Vertical Sample", variant="secondary")
                                 
                                 # Display the script and used videos below the selected video
-                                self.selected_video_script = gr.Textbox(label="Script", lines=10, visible=False)
+                                self.selected_video_script = gr.Textbox(label="Script", lines=5, visible=False)
                                 self.used_videos_row = gr.Row(visible=False)  # Row to display used videos
 
                             with gr.Column(scale=2.5):
@@ -458,8 +459,12 @@ class VideoAutomationUI(AbstractComponentUI):
                 
                 # Video generation
                 self.generate_video_button.click(
-                    fn=lambda: gr.update(visible=True, value="Starting video generation..."),
-                    outputs=[self.error_output]
+                    fn=lambda:[ gr.update(visible=True, value="Starting video generation..."),
+                        gr.update(visible=False),  # Hide sample video display
+                        gr.update(visible=False),  # Hide sample button row
+                        gr.update(value=self.loading_gif, visible=True),  # Show loading video
+                        gr.update(value="Video is generating...", visible=True) ], # Show generating message in selected script
+                    outputs=[self.error_output, self.sample_video_display, self.sample_buttons_row, self.loading_gif_display, self.selected_video_script]
                 ).then(
                     fn=self.make_video,
                     inputs=[
@@ -483,7 +488,7 @@ class VideoAutomationUI(AbstractComponentUI):
                 ).then(
                     fn=self.update_after_video_generation,
                     inputs=[self.video_output,self.script_output_below_video],
-                    outputs=[self.sample_buttons_row, self.sample_video_display, self.selected_video_script]
+                    outputs=[self.sample_buttons_row, self.sample_video_display, self.selected_video_script, self.loading_gif_display]
                 ).then(
                     fn=lambda: gr.update(visible=False),
                     outputs=[self.error_output],
