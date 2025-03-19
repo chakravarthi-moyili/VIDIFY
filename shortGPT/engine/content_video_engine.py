@@ -165,21 +165,18 @@ class ContentVideoEngine(AbstractContentEngine):
                     caption_type = EditingStep.ADD_CAPTION_SHORT_ARABIC_TOP if self._db_language == Language.ARABIC.value else EditingStep.ADD_CAPTION_SHORT_TOP
                 else:
                     caption_type = EditingStep.ADD_CAPTION_SHORT_ARABIC_BOTTOM if self._db_language == Language.ARABIC.value else EditingStep.ADD_CAPTION_SHORT_BOTTOM
-            # else:
-            #     print(self.text_position, self._db_format_vertical)
-            #     if(self.text_position == "Middle"):
-            #         print("******************* Middle ", {self.text_position}, " Calling *********************")
-            #         caption_type = EditingStep.ADD_CAPTION_LANDSCAPE_ARABIC if self._db_language == Language.ARABIC.value else EditingStep.ADD_CAPTION_LANDSCAPE
-            #     elif(self.text_position == "Top"):
-            #         print("******************* Top ", {self.text_position}, " Calling *********************")
-            #         caption_type = EditingStep.ADD_CAPTION_LANDSCAPE_ARABIC_TOP if self._db_language == Language.ARABIC.value else EditingStep.ADD_CAPTION_LANDSCAPE_TOP
-            #     else:
-            #         print("******************* Bottom ", {self.text_position}, " Calling *********************")
-            #         caption_type = EditingStep.ADD_CAPTION_LANDSCAPE_ARABIC_BOTTOM if self._db_language == Language.ARABIC.value else EditingStep.ADD_CAPTION_LANDSCAPE_BOTTOM
+            else:
+                print(self.text_position, self._db_format_vertical)
+                if(self.text_position == "Middle"):
+                    caption_type = EditingStep.ADD_CAPTION_LANDSCAPE_ARABIC if self._db_language == Language.ARABIC.value else EditingStep.ADD_CAPTION_LANDSCAPE
+                elif(self.text_position == "Top"):
+                    caption_type = EditingStep.ADD_CAPTION_LANDSCAPE_ARABIC_TOP if self._db_language == Language.ARABIC.value else EditingStep.ADD_CAPTION_LANDSCAPE_TOP
+                else:
+                    caption_type = EditingStep.ADD_CAPTION_LANDSCAPE_ARABIC_BOTTOM if self._db_language == Language.ARABIC.value else EditingStep.ADD_CAPTION_LANDSCAPE_BOTTOM
             #  if (self._db_format_vertical):
             #     caption_type = EditingStep.ADD_CAPTION_SHORT_ARABIC if self._db_language == Language.ARABIC.value else EditingStep.ADD_CAPTION_SHORT
-            else:
-                caption_type = EditingStep.ADD_CAPTION_LANDSCAPE_ARABIC if self._db_language == Language.ARABIC.value else EditingStep.ADD_CAPTION_LANDSCAPE
+            # else:
+            #     caption_type = EditingStep.ADD_CAPTION_LANDSCAPE_ARABIC if self._db_language == Language.ARABIC.value else EditingStep.ADD_CAPTION_LANDSCAPE
 
             for (t1, t2), text in self._db_timed_captions:
                 videoEditor.addEditingStep(caption_type, {'text': text.upper(),
