@@ -1,0 +1,37 @@
+{
+	"watermark_logo": {
+		"type": "image",
+		"inputs":{
+			"parameters": ["url"]
+		},
+		"z": 3,
+		"parameters": {
+			"url": null
+		},
+		"actions": [
+			{
+				"type": "auto_resize_image",
+				"param":{
+					"maxWidth": 280,
+					"maxHeight": 103
+				}
+			},
+			{
+				"type": "normalize_image",
+				"param":{
+					"maxWidth": 280,
+					"maxHeight": 103
+				}
+			},
+			{
+				"type": "screen_position",
+				"param": {
+					"pos": [
+						50,
+						50
+					]
+				}
+			}
+		]
+	}
+}

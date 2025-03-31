@@ -29,6 +29,7 @@ class EditingStep(Enum):
     ADD_CAPTION_LANDSCAPE = "make_caption_landscape.json"
     ADD_CAPTION_LANDSCAPE_ARABIC = "make_caption_arabic_landscape.json"
     ADD_WATERMARK = "show_watermark.json"
+    ADD_WATERMARK_LOGO = "show_watermark_logo.json"
     ADD_SUBSCRIBE_ANIMATION = "subscribe_animation.json"
     SHOW_IMAGE = "show_top_image.json"
     ADD_VOICEOVER_AUDIO = "add_voiceover.json"

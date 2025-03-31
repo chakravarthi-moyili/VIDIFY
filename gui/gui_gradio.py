@@ -20,10 +20,15 @@ class ShortGptUI(AbstractBaseUI):
         '''Create Gradio interface'''
         css = """
         .banner-row {
-            # background-color: #007bff;
+            background-color: #0ea6e9;
+            color: #fff !important;
             padding: 5px;
             margin: 0px;
             border-radius: 0px;
+        }
+        .logo{
+            background-color: #fff;
+            border-radius: 10px;
         }
         .title {
             text-align: center;
@@ -44,7 +49,7 @@ class ShortGptUI(AbstractBaseUI):
         }
         """
         
-        with gr.Blocks(theme=gr.themes.Default(spacing_size=gr.themes.sizes.spacing_sm), 
+        with gr.Blocks(theme=gr.themes.Base(spacing_size=gr.themes.sizes.spacing_sm, primary_hue="sky", secondary_hue="blue"), 
                     css=css + "footer {visibility: hidden}", 
                     title="AI-Powered Video Generator") as shortGptUI:
             with gr.Row(variant='compact', elem_classes="banner-row"):
@@ -52,7 +57,7 @@ class ShortGptUI(AbstractBaseUI):
                     # Banner row with blue background
                     with gr.Row(equal_height=True, variant="compact", elem_classes="banner-row"):
                         # Logo column (left)
-                        with gr.Column(scale=1, min_width=100):
+                        with gr.Column(scale=1, min_width=100, elem_classes="logo"):
                             gr.Image("assets/img/logo.png", show_label=False, show_download_button=False, show_fullscreen_button=False, container=False)
                         
                         # Title column (center)

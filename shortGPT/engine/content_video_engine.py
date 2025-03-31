@@ -4,6 +4,7 @@ import os
 import re
 import shutil
 import traceback
+import ffmpeg
 
 from shortGPT.api_utils.pexels_api import getBestVideo as getBestVideoPexels
 from shortGPT.api_utils.pixabay_api import get_best_video_pixabay as getBestVideoPixabay
@@ -24,17 +25,19 @@ from shortGPT.database.db_handler import VideoMetadataDB
 class ContentVideoEngine(AbstractContentEngine):
 
     def __init__(self, voiceModule: VoiceModule, script: str, background_music_name="", id="",
-                 watermark=None, isVerticalFormat=False, language: Language = Language.ENGLISH, api_source = "Pexels", text_position = "Middle"):
+                 watermark_logo=None, isVerticalFormat=False, language: Language = Language.ENGLISH, api_source = "Pexels", text_position = "Middle", quality = "HD"):
         super().__init__(id, "general_video", language, voiceModule)
         if not id:
-            if (watermark):
-                self._db_watermark = watermark
+            if (watermark_logo):
+                self._db_watermark_logo = watermark_logo
+                print(watermark_logo)
             if background_music_name:
                 self._db_background_music_name = background_music_name
             self._db_script = script
             self._db_format_vertical = isVerticalFormat
             self.api_source = api_source
             self.text_position = text_position
+            self.quality = quality
 
         self.stepDict = {
             1: self._generateTempAudio,
@@ -154,6 +157,8 @@ class ContentVideoEngine(AbstractContentEngine):
                 videoEditor.addEditingStep(EditingStep.ADD_BACKGROUND_MUSIC, {'url': self._db_background_music_url,
                                                                              'loop_background_music': self._db_voiceover_duration,
                                                                              "volume_percentage": 0.08})
+            if (self._db_watermark_logo):
+                videoEditor.addEditingStep(EditingStep.ADD_WATERMARK_LOGO, {'url' : self._db_watermark_logo})
             for (t1, t2), video_url in self._db_timed_video_urls:
                 videoEditor.addEditingStep(EditingStep.ADD_BACKGROUND_VIDEO, {'url': video_url,
                                                                              'set_time_start': t1,
@@ -185,7 +190,37 @@ class ContentVideoEngine(AbstractContentEngine):
 
             videoEditor.renderVideo(outputPath, logger=self.logger if self.logger is not self.default_logger else None)
 
-        self._db_video_path = outputPath
+            mv = ffmpeg.input(outputPath)
+            av1 = mv.audio
+            stream = mv.video
+
+            if(self._db_format_vertical):
+                if(self.quality=="4k"):
+                    stream = stream.filter('fps', fps=25, round='up').filter('scale', w=2160, h=3840)
+                elif(self.quality=="HD"):
+                    stream = stream.filter('fps', fps=25, round='up').filter('scale', w=1080, h=1920)
+                elif(self.quality=="SD"):
+                    stream = stream.filter('fps', fps=25, round='up').filter('scale', w=480, h=720)
+                else:
+                    print("Invalid resolution choice. Using default resolution (HD).")
+                    stream = stream.filter('fps', fps=25, round='up').filter('scale', w=1080, h=1920)
+            else:
+                if(self.quality=="4k"):
+                    stream = stream.filter('fps', fps=25, round='up').filter('scale', w=3840, h=2160)
+                elif(self.quality=="HD"):
+                    stream = stream.filter('fps', fps=25, round='up').filter('scale', w=1920, h=1080)
+                elif(self.quality=="SD"):
+                    stream = stream.filter('fps', fps=25, round='up').filter('scale', w=720, h=480)
+                else:
+                    print("Invalid resolution choice. Using default resolution (HD).")
+                    stream = stream.filter('fps', fps=25, round='up').filter('scale', w=1920, h=1080)
+            outputvideo = self.dynamicAssetDir + "rendered_final_video.mp4"
+            outputPath = None
+
+
+            ffmpeg.output(av1, stream,outputvideo, vcodec='libx264', acodec='aac', strict='-2').run(overwrite_output=True)
+            
+            self._db_video_path = outputvideo
 
 
     def _addMetadata(self):

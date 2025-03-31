@@ -9,7 +9,7 @@
 		"parameters": {
 			"text": null,
 			"font_size": 100,
-			"font": "fonts/LuckiestGuy-Regular.ttf",
+			"font": "fonts/Roboto-Bold.ttf",
 			"color": "white",
 			"stroke_width": 3,
 			"stroke_color": "black",

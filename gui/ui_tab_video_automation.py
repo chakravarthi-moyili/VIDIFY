@@ -47,6 +47,7 @@ class VideoAutomationUI(AbstractComponentUI):
         self.landscape_sample = "assets/videos/Sample_Landscape.mp4"
         self.vertical_sample = "assets/videos/Sample_Verticals.mp4"
         self.loading_gif = "assets/img/loading_gif.gif"
+        self.watermark_logo = "assets/img/logo.png"
         # self.progress_counter = 0
 
     def check_api_keys(self):
@@ -75,6 +76,9 @@ class VideoAutomationUI(AbstractComponentUI):
         return None
 
     def generate_script(self, message, language):
+
+        # self.language = Language(language.upper())
+        print(f"\n SELF Status --> lang - {language} ; language -- {self.language} ")
         """Generate a script based on the description and language"""
         self.state = Chatstate.GENERATE_SCRIPT
         return gpt_chat_video.generateScript(message, language)
@@ -93,10 +97,10 @@ class VideoAutomationUI(AbstractComponentUI):
         except Exception as e:
             return False, f"Error setting up voice module: {str(e)}"
 
-    def make_video(self, script, orientation_choice, text_position, quality, duration, progress=gr.Progress()):
+    def make_video(self, script, orientation_choice, text_position, quality, duration, language, progress=gr.Progress()):
         """Generate the video based on script and settings"""
         self.state = Chatstate.MAKE_VIDEO
-        
+        print(f"Video Language - {language} ")
         # Set orientation
         self.isVertical = True if orientation_choice == "Vertical" else False
         
@@ -107,9 +111,10 @@ class VideoAutomationUI(AbstractComponentUI):
         self.text_position = text_position
         self.quality = quality
         self.duration = duration
-        
+
         # Set up voice module
-        success, message = self.setup_voice_module(self.language)
+        # success, message = self.setup_voice_module(self.language)
+        success, message = self.setup_voice_module(Language(language))
         if not success:
             return None, message
         
@@ -126,8 +131,9 @@ class VideoAutomationUI(AbstractComponentUI):
                 isVerticalFormat=self.isVertical,
                 api_source=self.api_source,
                 text_position=self.text_position,
-                # quality=self.quality,
-                # duration=self.duration
+                quality=self.quality,
+                # duration=self.duration,
+                watermark_logo=self.watermark_logo
             )
             
             num_steps = videoEngine.get_total_steps()
@@ -348,6 +354,7 @@ class VideoAutomationUI(AbstractComponentUI):
                                                     label="Content Language",
                                                     value=Language.ENGLISH.value
                                                 )
+                                                
                                         
                                         with gr.Row():
                                             with gr.Column(scale=1):
@@ -363,8 +370,8 @@ class VideoAutomationUI(AbstractComponentUI):
                                                 self.quality_dropdown = gr.Dropdown(
                                                     choices=["SD", "HD", "4k"], 
                                                     label="Video Quality",
-                                                    interactive=False,
-                                                    value="4k"  # Changed default to 4k
+                                                    # interactive=False,
+                                                    value="HD"  # Changed default to HD
                                                 )
                                         
                                         with gr.Row():
@@ -472,7 +479,8 @@ class VideoAutomationUI(AbstractComponentUI):
                         self.orientation_dropdown,
                         self.text_position_dropdown,
                         self.quality_dropdown,
-                        self.duration_slider
+                        self.duration_slider,
+                        self.language_dropdown
                     ],
                     outputs=[self.video_output, self.script_output_below_video]  # Updated to use script_output_below_video
                 # ).then(
