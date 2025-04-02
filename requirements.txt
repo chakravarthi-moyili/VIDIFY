@@ -21,3 +21,4 @@ progress
 questionary
 edge-tts
 ffmpeg-python
+pydantic==2.10.6
