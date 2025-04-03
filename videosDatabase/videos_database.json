@@ -1,22 +1,22 @@
 {
     "videos": [
         {
-            "_id": "vid_2025-03-18_12-19-17",
+            "_id": "vid_2025-04-02_09-44-35",
             "data": {
-                "generated_video_title": "Happy Bottoms - Advertisement",
-                "generate_vid_id": "vid_2025-03-18_12-19-17",
-                "generated_video": "assets/videos/2025-03-18_12-19-17 - Meet Happy Bottoms Baby Comfort Unleashed .mp4",
-                "used_script": "Introducing Happy Bottoms – the revolutionary baby diaper your little one will adore! With an excellent snug fit, our diapers provide the ultimate comfort for your baby's delicate skin. Made from ultra-soft materials, they ensure that your baby feels cozy all day long.Available in a variety of vibrant colors, Happy Bottoms diapers not only look good but also come with a delightful scent that keeps your baby fresh and happy. Designed for durability and practicality, these diapers are perfect for everyday use, and the best part? They come at an unbeatable price! Choose from packs of 6, 12, or more to fit your family's needs.Make the switch to Happy Bottoms today - where comfort meets affordability. Your baby deserves the best, and we deliver just that!",
+                "generated_video_title": "Happy Bottoms - Advertisement (HD)",
+                "generate_vid_id": "vid_2025-04-02_09-44-35",
+                "generated_video": "assets/videos/2025-04-02_09-44-35 - Discover Happy Bottoms Comfort  Style for Your Baby .mp4",
+                "used_script": "Introducing Happy Bottoms, the ultimate diaper that combines comfort and style for your little one! Designed with an excellent snug fit, these ultra-soft diapers ensure that your baby feels happy and cozy all day long. Available in a variety of vibrant colors and delightful scents, Happy Bottoms not only look great but also keep your baby feeling fresh and loved. But that’s not all! Happy Bottoms are built to last, providing durability without compromising on quality. Say goodbye to worries about leaks and messes — our diapers have you covered! And the best part? You can enjoy Happy Bottoms at a never-before-seen price! Available in packs of 6, 12, and more, we offer fantastic value for every family. Make the switch to Happy Bottoms today, and watch your baby smile in comfort and style! Because every little one deserves a happy bottom! Get yours now!",
                 "orientation": "vertical",
                 "used_videos": {
                     "clip_1": {
-                        "source": "https://videos.pexels.com/video-files/8046147/8046147-hd_1080_1920_25fps.mp4",
+                        "source": "https://videos.pexels.com/video-files/7348056/7348056-hd_1080_1920_25fps.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 1"
                     },
                     "clip_2": {
-                        "source": "https://videos.pexels.com/video-files/7884188/7884188-hd_1080_1920_25fps.mp4",
+                        "source": "https://videos.pexels.com/video-files/7505762/7505762-hd_1080_1920_30fps.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 2"
@@ -28,51 +28,57 @@
                         "description": "Clip 3"
                     },
                     "clip_4": {
-                        "source": "https://videos.pexels.com/video-files/6098994/6098994-hd_1080_1920_25fps.mp4",
+                        "source": "https://videos.pexels.com/video-files/5501734/5501734-hd_1080_1920_24fps.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 4"
                     },
                     "clip_5": {
-                        "source": "https://videos.pexels.com/video-files/9314167/9314167-hd_1080_1920_25fps.mp4",
+                        "source": "https://videos.pexels.com/video-files/7884188/7884188-hd_1080_1920_25fps.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 5"
                     },
                     "clip_6": {
-                        "source": "https://videos.pexels.com/video-files/9314167/9314167-hd_1080_1920_25fps.mp4",
+                        "source": "https://videos.pexels.com/video-files/6349071/6349071-hd_1080_1920_25fps.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 6"
                     },
                     "clip_7": {
-                        "source": "https://videos.pexels.com/video-files/7505762/7505762-hd_1080_1920_30fps.mp4",
+                        "source": "https://videos.pexels.com/video-files/5728974/5728974-hd_1080_1920_30fps.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 7"
                     },
                     "clip_8": {
-                        "source": "https://videos.pexels.com/video-files/5662337/5662337-hd_1080_1920_25fps.mp4",
+                        "source": "https://videos.pexels.com/video-files/4812234/4812234-hd_1080_1920_30fps.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 8"
                     },
                     "clip_9": {
-                        "source": " https://videos.pexels.com/video-files/8632511/8632511-hd_1080_1920_30fps.mp4",
+                        "source": " https://videos.pexels.com/video-files/6953349/6953349-hd_1080_1920_25fps.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 9"
+                    },
+                    "clip_10": {
+                        "source": " https://videos.pexels.com/video-files/7288126/7288126-hd_1080_1920_25fps.mp4",
+                        "start_time": 0.0,
+                        "end_time": 10,
+                        "description": "Clip 10"
                     }
                 }
             }
         },
         {
-            "_id": "vid_2025-03-18_14-17-04",
+            "_id": "2025-04-02_10-07-00",
             "data": {
-                "generated_video_title": "Plants Superpower Photosynthesis - Education",
-                "generate_vid_id": "vid_2025-03-18_14-17-04",
-                "generated_video": "assets/videos/2025-03-18_14-17-04 - Plants Superpower Photosynthesis Explained .mp4",
-                "used_script": "Did you know that plants have a superpower? It's called photosynthesis! This amazing process helps them turn sunlight into food. When sunlight touches the leaves, plants take in carbon dioxide from the air and water from the soil. Using the energy from the sun, they mix these ingredients together. The result? Delicious food that helps them grow strong and healthy! And that's not all. During photosynthesis, plants also release oxygen into the air, which is essential for us to breathe. So, every time you take a deep breath, remember that plants are hard at work making food and keeping our air clean. Isn't nature incredible?",
+                "generated_video_title": "The Magical Power of Plants Revealed - Education (HD)",
+                "generate_vid_id": "2025-04-02_10-07-00",
+                "generated_video": "assets/videos/2025-04-02_10-07-00 -  The Magical Power of Plants Revealed .mp4",
+                "used_script": "Did you know that plants have a special power? It's called photosynthesis! This is how they make their own food. Using sunlight, plants take in carbon dioxide from the air and water from the soil. Inside their leaves, they mix these ingredients together. Just like a chef creating a delicious meal, plants use the energy from sunlight to cook up food. But that’s not all! This amazing process also helps our planet. As plants take in carbon dioxide, they release oxygen, which we breathe. So, the next time you see a green plant, remember: they are not just standing there. They are busy working hard, creating food and oxygen for us all! Isn’t nature amazing?",
                 "orientation": "landscape",
                 "used_videos": {
                     "clip_1": {
@@ -82,211 +88,199 @@
                         "description": "Clip 1"
                     },
                     "clip_2": {
-                        "source": "https://cdn.pixabay.com/video/2016/09/22/5635-183850259_large.mp4",
+                        "source": "https://cdn.pixabay.com/video/2019/02/23/21617-319452308_large.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 2"
                     },
                     "clip_3": {
-                        "source": " https://cdn.pixabay.com/video/2019/03/21/22183-712840599_large.mp4",
+                        "source": "https://cdn.pixabay.com/video/2023/06/09/166485-834930379_large.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 3"
                     },
                     "clip_4": {
-                        "source": "https://cdn.pixabay.com/video/2019/04/29/23134-333321317_large.mp4",
+                        "source": "https://cdn.pixabay.com/video/2016/07/20/3904-175596530_large.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 4"
                     },
                     "clip_5": {
-                        "source": "https://cdn.pixabay.com/video/2019/09/07/26637-360259342_large.mp4",
+                        "source": "https://cdn.pixabay.com/video/2022/04/09/113403-697718184_large.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 5"
                     },
                     "clip_6": {
-                        "source": "https://cdn.pixabay.com/video/2020/04/30/37712-414754673_large.mp4",
-                        "start_time": 0.0,
-                        "end_time": 10,
-                        "description": "Clip 6"
-                    },
-                    "clip_7": {
                         "source": "https://cdn.pixabay.com/video/2016/07/26/4006-176282263_large.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
+                        "description": "Clip 6"
+                    },
+                    "clip_7": {
+                        "source": "https://cdn.pixabay.com/video/2015/10/19/1105-143052525_large.mp4",
+                        "start_time": 0.0,
+                        "end_time": 10,
                         "description": "Clip 7"
                     },
                     "clip_8": {
-                        "source": "https://cdn.pixabay.com/video/2018/01/06/13704-250154065_large.mp4",
+                        "source": "https://cdn.pixabay.com/video/2015/09/16/784-139519770_large.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 8"
+                    },
+                    "clip_9": {
+                        "source": "https://cdn.pixabay.com/video/2016/02/11/2119-155244112_large.mp4",
+                        "start_time": 0.0,
+                        "end_time": 10,
+                        "description": "Clip 9"
                     }
                 }
             }
         },
         {
-            "_id": "vid_2025-03-18_14-38-00",
+            "_id": "2025-04-03_04-55-41",
             "data": {
-                "generated_video_title": "SpiceJet Celebrates Holi in the Skies - News",
-                "generate_vid_id": "vid_2025-03-18_14-38-00",
-                "generated_video": "assets/videos/2025-03-18_14-38-00 - SpiceJet Celebrates Holi in the Skies .mp4",
-                "used_script": "This Holi, SpiceJet turned an ordinary flight into a vibrant celebration! Passengers were treated to a festive atmosphere as the cheerful cabin crew danced to the iconic song 'Balam Pichkari'. In a delightful gesture, they also applied Holi tika on the travelers, enhancing the spirit of the festival. Social media buzzed with mixed reactions to this unique initiative. Many praised the airline for embracing the joyous occasion, seeing it as a refreshing break from routine travel. Others expressed concerns about the appropriateness of such festivities in a flight setting. Regardless of the opinions, one thing is clear: SpiceJet brought a touch of color and joy to the skies, embodying the fun and togetherness that Holi represents. As the celebration continues to spark discussions online, it reminds us of the diverse ways we can celebrate culture and create memorable experiences.",
+                "generated_video_title": "SpiceJets Holi Celebration at 30000 Feet - News (SD)",
+                "generate_vid_id": "2025-04-03_04-55-41",
+                "generated_video": "assets/videos/2025-04-03_04-55-41 -  SpiceJets Holi Celebration at 30000 Feet .mp4",
+                "used_script": "Did you know that SpiceJet turned an ordinary flight into a vibrant celebration during Holi? Passengers experienced the joy of the festival as the cabin crew danced to the enchanting tunes of 'Balam Pichkari,' filling the cabin with festive cheer. Adding to the spirit, they lovingly applied traditional Holi tika on the foreheads of passengers, creating a sense of community and celebration mid-air. This unique approach sparked a wave of reactions on social media, with some praising the airline for infusing fun and culture into travel, while others had mixed feelings about the unconventional in-flight experience. SpiceJet's festive flight certainly brought color to the skies, reminding us all that travel can be about more than just reaching our destinations. It’s about celebrating life, culture, and togetherness, even at 30,000 feet!",
                 "orientation": "landscape",
                 "used_videos": {
                     "clip_1": {
-                        "source": "https://cdn.pixabay.com/video/2022/11/22/140111-774507949_large.mp4",
+                        "source": "https://cdn.pixabay.com/video/2016/06/27/3608-172488324_large.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 1"
                     },
                     "clip_2": {
-                        "source": "https://cdn.pixabay.com/video/2016/06/27/3608-172488324_large.mp4",
+                        "source": "https://cdn.pixabay.com/video/2020/02/27/32938-395456384_large.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 2"
                     },
                     "clip_3": {
-                        "source": " https://cdn.pixabay.com/video/2019/05/22/23881-337972830_large.mp4",
+                        "source": " https://cdn.pixabay.com/video/2018/01/07/13724-250154089_large.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 3"
                     },
                     "clip_4": {
-                        "source": "https://cdn.pixabay.com/video/2022/12/07/141964-778907198_large.mp4",
+                        "source": "https://cdn.pixabay.com/video/2018/12/19/20145-307814424_large.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 4"
                     },
                     "clip_5": {
-                        "source": "https://cdn.pixabay.com/video/2020/02/06/32021-390497693_large.mp4",
+                        "source": "https://cdn.pixabay.com/video/2021/10/04/90817-629483542_large.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 5"
                     },
                     "clip_6": {
-                        "source": "https://cdn.pixabay.com/video/2020/04/30/37712-414754673_large.mp4",
+                        "source": "https://cdn.pixabay.com/video/2022/07/21/124983-732319296_large.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 6"
                     },
                     "clip_7": {
-                        "source": "https://cdn.pixabay.com/video/2015/10/16/995-142621134_large.mp4",
+                        "source": "https://cdn.pixabay.com/video/2017/08/20/11490-230853032_large.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 7"
                     },
                     "clip_8": {
-                        "source": "https://cdn.pixabay.com/video/2022/12/30/144728-785264986_large.mp4",
+                        "source": "https://cdn.pixabay.com/video/2019/06/23/24603-344986224_large.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 8"
-                    },
-                    "clip_9": {
-                        "source": "https://cdn.pixabay.com/video/2016/02/29/2299-157183618_large.mp4",
-                        "start_time": 0.0,
-                        "end_time": 10,
-                        "description": "Clip 9"
-                    },
-                    "clip_10": {
-                        "source": "https://cdn.pixabay.com/video/2018/12/19/20145-307814424_large.mp4",
-                        "start_time": 0.0,
-                        "end_time": 10,
-                        "description": "Clip 10"
-                    },
-                    "clip_11": {
-                        "source": "https://cdn.pixabay.com/video/2016/12/20/6840-196573698_large.mp4",
-                        "start_time": 0.0,
-                        "end_time": 10,
-                        "description": "Clip 11"
                     }
                 }
             }
         },
         {
-            "_id": "vid_2025-03-18_15-06-33",
+            "_id": "vid_2025-04-02_10-22-42",
             "data": {
-                "generated_video_title": "Zomato Set to Soar - Stock Market",
-                "generate_vid_id": "vid_2025-03-18_15-06-33",
-                "generated_video": "assets/videos/2025-03-18_15-06-33 -  Zomato Set to Soar BUY Recommendation Revealed .mp4",
-                "used_script": "Today, we initiate coverage on Zomato with a BUY recommendation and a target price of Rs 280 per share, indicating a potential upside of 23%. Zomato is gearing up for growth, particularly in the Quick Commerce sector, backed by improving profitability and reduced losses in key areas. India's food delivery market is still developing, with urban populations expected to rise significantly by 2030, providing robust opportunities. Currently, over 34% of India’s population resides in urban areas, which bodes well for increased food consumption, contributing a quarter of the nation’s GDP. Notably, the younger demographic, with a median age of 28, combined with rising internet penetration, is set to fuel this growth further. Zomato stands out with its farm-to-fork approach and extensive restaurant network, which enhances its B2B operations. In Quick Commerce, significant revenue growth is expected as the market could expand ten to fifteen times by 2025. Even in its early stages, capturing market share in this sector could lead to substantial revenue increases for Zomato.",
+                "generated_video_title": "Zomato Set to Soar - Stock Market (SD)",
+                "generate_vid_id": "vid_2025-04-02_10-22-42",
+                "generated_video": "assets/videos/2025-04-02_10-22-42 -  Zomato Buy Now Target Price Rs 280 .mp4",
+                "used_script": "Today, we are excited to announce a BUY recommendation on Zomato, with a Target Price of Rs 280 per share, reflecting a potential upside of 23%. Zomato is strategically expanding in the Quick Commerce sector, leading to improved profitability and reduced losses. The food delivery sector is still in its infancy in India, with the urban population set to grow from 34-35% to 42-43% by 2030. This shift in urbanization opens up significant market opportunities aligned with evolving consumer preferences. Food consumption accounts for a quarter of India’s GDP, and with a youthful population and increasing internet access, the food delivery market is ripe for growth. Zomato's unique farm-to-fork approach and strong restaurant network are key differentiators in its B2B operations. Additionally, while the Quick Commerce segment is emerging, it is projected to explode in size, offering substantial revenue growth potential. As per Redseer, this market could expand by 10-15 times by 2025. With these factors in play, Zomato is well-positioned for success.",
                 "orientation": "vertical",
                 "used_videos": {
                     "clip_1": {
-                        "source": "https://videos.pexels.com/video-files/5377976/5377976-hd_1080_1920_25fps.mp4",
+                        "source": "https://videos.pexels.com/video-files/6463895/6463895-hd_1080_1920_25fps.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 1"
                     },
                     "clip_2": {
-                        "source": "https://videos.pexels.com/video-files/8926978/8926978-hd_1080_1920_30fps.mp4",
+                        "source": "https://videos.pexels.com/video-files/8062136/8062136-hd_1080_1920_30fps.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 2"
                     },
                     "clip_3": {
-                        "source": " https://videos.pexels.com/video-files/7247871/7247871-hd_1080_1920_30fps.mp4",
+                        "source": "https://videos.pexels.com/video-files/8938169/8938169-hd_1080_1920_30fps.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 3"
                     },
                     "clip_4": {
-                        "source": "https://videos.pexels.com/video-files/8439879/8439879-hd_1080_1920_25fps.mp4",
+                        "source": "https://videos.pexels.com/video-files/31395143/13396459_1080_1920_60fps.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 4"
                     },
                     "clip_5": {
-                        "source": "https://videos.pexels.com/video-files/31143481/13307348_1080_1920_30fps.mp4",
+                        "source": "https://videos.pexels.com/video-files/31395207/13396360_1080_1920_60fps.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 5"
                     },
                     "clip_6": {
-                        "source": "https://videos.pexels.com/video-files/31114778/13294944_1080_1920_60fps.mp4",
+                        "source": "https://videos.pexels.com/video-files/8937985/8937985-hd_1080_1920_30fps.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 6"
                     },
                     "clip_7": {
-                        "source": "https://videos.pexels.com/video-files/7681480/7681480-hd_1080_1920_25fps.mp4",
+                        "source": "https://videos.pexels.com/video-files/3198244/3198244-hd_1080_1920_25fps.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 7"
                     },
                     "clip_8": {
-                        "source": "https://videos.pexels.com/video-files/7677193/7677193-hd_1080_1920_25fps.mp4",
+                        "source": "https://videos.pexels.com/video-files/4872942/4872942-hd_1080_1920_25fps.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 8"
                     },
                     "clip_9": {
-                        "source": "https://videos.pexels.com/video-files/8765144/8765144-hd_1080_1920_25fps.mp4",
+                        "source": "https://videos.pexels.com/video-files/6282378/6282378-hd_1080_1920_30fps.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 9"
                     },
                     "clip_10": {
-                        "source": "https://videos.pexels.com/video-files/5659276/5659276-hd_1080_1920_30fps.mp4",
+                        "source": "https://videos.pexels.com/video-files/7168747/7168747-hd_1080_1920_25fps.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 10"
                     },
                     "clip_11": {
-                        "source": "https://videos.pexels.com/video-files/6282316/6282316-hd_1080_1920_30fps.mp4",
+                        "source": "https://videos.pexels.com/video-files/5989753/5989753-hd_1080_1920_25fps.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 11"
                     },
                     "clip_12": {
-                        "source": "https://videos.pexels.com/video-files/31132100/13302350_1080_1920_60fps.mp4",
+                        "source": "https://videos.pexels.com/video-files/7164240/7164240-hd_1080_1920_30fps.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 12"
                     },
                     "clip_13": {
-                        "source": "https://videos.pexels.com/video-files/6624835/6624835-hd_1080_1920_30fps.mp4",
+                        "source": "https://videos.pexels.com/video-files/4806404/4806404-hd_1080_1920_30fps.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 13"
@@ -295,85 +289,85 @@
             }
         },
         {
-            "_id": "vid_2025-03-17_10-05-55",
+            "_id": "2025-04-03_05-19-51",
             "data": {
-                "generated_video_title": "Stock market tips for Begginers",
-                "generate_vid_id": "vid_2025-03-17_10-05-55",
-                "generated_video": "assets/videos/2025-03-17_10-05-55-Investing101YourStartingGuidetotheStockMarket .mp4",
-                "used_script": "Are you new to the stock market? Start by educating yourself about basic terms and concepts. Set clear investment goals and stay disciplined. Diversify your portfolio to manage risk, and invest for the long term. Remember, emotional decisions can lead to mistakes. Stay informed, and you'll thrive in the market!",
-                "orientation": "vertical",
+                "generated_video_title": "Chandrayaan 3 Indias Lunar Mission - Science & Technology (4k)",
+                "generate_vid_id": "2025-04-03_05-19-51",
+                "generated_video": "assets/videos/2025-04-03_05-19-51 - Chandrayaan 3 Indias Lunar Mission Success .mp4",
+                "used_script": "Chandrayaan 3, India’s ambitious lunar mission, successfully landed on the Moon's surface in August 2023. This mission aims to explore the Moon's south pole, conducting experiments to uncover its secrets. With advanced technology and a focus on sustainable lunar exploration, Chandrayaan 3 marks a significant milestone in space research.",
+                "orientation": "landscape",
                 "used_videos": {
                     "clip_1": {
-                        "source": "https://videos.pexels.com/video-files/3256819/3256819-hd_1080_1920_25fps.mp4",
+                        "source": "https://cdn.pixabay.com/video/2016/01/29/1992-153555258_large.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 1"
                     },
                     "clip_2": {
-                        "source": "https://videos.pexels.com/video-files/5184434/5184434-hd_1080_1920_30fps.mp4",
+                        "source": "https://cdn.pixabay.com/video/2015/08/07/2-135653517_large.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 2"
                     },
                     "clip_3": {
-                        "source": "https://videos.pexels.com/video-files/8970369/8970369-hd_1080_1920_30fps.mp4",
+                        "source": "https://cdn.pixabay.com/video/2015/10/16/1046-142621379_large.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 3"
                     },
                     "clip_4": {
-                        "source": "https://videos.pexels.com/video-files/8348327/8348327-hd_1080_1920_25fps.mp4",
+                        "source": "https://cdn.pixabay.com/video/2022/11/26/140521-775376205_large.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 4"
                     },
                     "clip_5": {
-                        "source": "https://videos.pexels.com/video-files/6668697/6668697-hd_1080_1920_30fps.mp4",
+                        "source": "https://cdn.pixabay.com/video/2016/12/16/6797-196071980_large.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 5"
+                    },
+                    "clip_6": {
+                        "source": "https://cdn.pixabay.com/video/2016/12/16/6797-196071980_large.mp4",
+                        "start_time": 0.0,
+                        "end_time": 10,
+                        "description": "Clip 6"
                     }
                 }
             }
         },
         {
-            "_id": "vid_2025-03-17_10-40-51",
+            "_id": "vid_2025-04-03_05-32-10",
             "data": {
-                "generated_video_title": "About online scams - Awareness",
-                "generate_vid_id": "vid_2025-03-17_10-40-51",
-                "generated_video": "assets/videos/2025-03-17_10-40-51-StaySafefromOnlineScams.mp4",
-                "used_script": "Online scams are everywhere, targeting unsuspecting victims. These scams often come in the form of phishing emails, fake websites, or dubious offers. Always verify the source before clicking on links or sharing personal information. Stay alert, protect your data, and report suspicious activities to ensure a safer online experience.",
-                "orientation": "landscape",
+                "generated_video_title": "Stay Safe from Social Media Scams - Awareness",
+                "generate_vid_id": "vid_2025-04-03_05-32-10",
+                "generated_video": "assets/videos/2025-04-03_05-32-10 - Stay Safe from Social Media Scams .mp4",
+                "used_script": "Social media scams are on the rise, targeting users through fake accounts and deceptive messages. Always verify the source before clicking links or sharing personal information. Be cautious with offers that seem too good to be true. Protect yourself by staying informed and reporting suspicious activity.",
+                "orientation": "vertical",
                 "used_videos": {
                     "clip_1": {
-                        "source": "https://cdn.pixabay.com/video/2016/09/05/4941-181472380_large.mp4",
+                        "source": "https://videos.pexels.com/video-files/6598885/6598885-hd_1080_1920_30fps.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 1"
                     },
                     "clip_2": {
-                        "source": "https://cdn.pixabay.com/video/2015/11/25/1360-147055409_large.mp4",
+                        "source": "https://videos.pexels.com/video-files/8439879/8439879-hd_1080_1920_25fps.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 2"
                     },
                     "clip_3": {
-                        "source": "https://cdn.pixabay.com/video/2017/08/29/11606-231571862_large.mp4",
+                        "source": "https://videos.pexels.com/video-files/7567361/7567361-hd_1080_1920_25fps.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 3"
                     },
                     "clip_4": {
-                        "source": "https://cdn.pixabay.com/video/2017/11/02/12716-241674181_large.mp4",
+                        "source": "https://videos.pexels.com/video-files/7567370/7567370-hd_1080_1920_25fps.mp4",
                         "start_time": 0.0,
                         "end_time": 10,
                         "description": "Clip 4"
-                    },
-                    "clip_5": {
-                        "source": "https://cdn.pixabay.com/video/2016/02/15/2176-155747466_large.mp4",
-                        "start_time": 0.0,
-                        "end_time": 10,
-                        "description": "Clip 5"
                     }
                 }
             }
