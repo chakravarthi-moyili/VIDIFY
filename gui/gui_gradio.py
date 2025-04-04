@@ -105,8 +105,10 @@ class ShortGptUI(AbstractBaseUI):
             server_port=31415,
             height=1000,
             allowed_paths=["public/", "videos/", "fonts/"],
+            favicon_path="public/favicon.png",
             share=self.colab,
-            server_name="0.0.0.0"
+            server_name="0.0.0.0",
+            auth=("vidify", "$@ranyu25")
             # server_timeout = 2000
         )
 
