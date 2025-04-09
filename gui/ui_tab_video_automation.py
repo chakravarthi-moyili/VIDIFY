@@ -1,11 +1,14 @@
 import os
 import traceback
 from enum import Enum
+from PIL import Image
 
 import gradio as gr
 import requests
 import time
 import json
+import tempfile
+import numpy as np
 
 from gui.asset_components import AssetComponentsUtils
 from gui.ui_abstract_component import AbstractComponentUI
@@ -271,6 +274,59 @@ class VideoAutomationUI(AbstractComponentUI):
         # self.used_videos_row = new_used_videos_row
 
         return new_used_videos_row
+    
+    def set_watermark_logo(self, image_path):
+        # if image_path is None:
+        #     return
+        
+        # # Convert to PNG format if needed
+        # from PIL import Image
+        # import os
+        
+        # # Generate output path with .png extension
+        # output_path = os.path.splitext(image_path)[0] + ".png"
+        
+        # # Open and save as PNG
+        # img = Image.open(image_path)
+        # img.save(output_path, format="PNG")
+        
+        # # Set the watermark logo
+        # self.watermark_logo = output_path
+        if image_path is None:
+            return
+        
+        # Open the image
+        img = Image.open(image_path)
+        
+        # Convert to RGBA if not already
+        if img.mode != 'RGBA':
+            img = img.convert('RGBA')
+        
+        # Get data as numpy array
+        data = np.array(img)
+        
+        # Create a mask based on high brightness/whiteness
+        r, g, b, a = data[:,:,0], data[:,:,1], data[:,:,2], data[:,:,3]
+        mask = ((r > 230) & (g > 230) & (b > 230))
+        
+        # Set alpha channel to 0 for white pixels
+        data[:,:,3] = np.where(mask, 0, data[:,:,3])
+        
+        # Create new image with transparent background
+        result = Image.fromarray(data)
+        
+        # Create a temporary file with .png extension
+        temp_file = tempfile.NamedTemporaryFile(suffix='.png', delete=False)
+        temp_file.close()
+        
+        # Save the image to the temporary location
+        result.save(temp_file.name)
+        
+        # Assign temporary path to watermark_logo
+        self.watermark_logo = temp_file.name
+        print(f"=========================== image {self.watermark_logo}")
+        
+        return
 
     def create_ui(self):
             with gr.Blocks() as self.video_automation:
@@ -303,6 +359,22 @@ class VideoAutomationUI(AbstractComponentUI):
                                     with gr.Row():
                                         self.approve_script_button = gr.Button("Use This Script", variant="primary")
                                         self.edit_script_button = gr.Button("Edit Script", visible=True)  # Initially visible
+
+                        with gr.Row(visible=True) as self.dynamic_logo:
+                            with gr.Column():
+                                logo_image = gr.Image(type='filepath', 
+                                        show_label=True,
+                                        label="Drop your logo here...",
+                                        mirror_webcam=False)
+                                # # Add change event handler to process the uploaded image
+                                # logo_image.change(
+                                #     fn=self.process_logo_image,
+                                #     inputs=logo_image,
+                                #     outputs=None
+                                # )
+
+                                # Add a button to process the uploaded image
+                                self.use_logo_btn = gr.Button(value="Use as Logo", variant="primary")
                         
                         # Third Block: Video Generation Settings
                         
@@ -428,6 +500,13 @@ class VideoAutomationUI(AbstractComponentUI):
                     fn=self.update_script_block_visibility,  # Update script block visibility
                     inputs=[self.script_output],
                     outputs=[self.script_block, self.approve_script_button, self.script_output]
+                )
+
+                # Connect the button click event
+                self.use_logo_btn.click(
+                    fn=self.set_watermark_logo,
+                    inputs=[logo_image],
+                    outputs=[]
                 )
                 
                 # Script visibility toggle
