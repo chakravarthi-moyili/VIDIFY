@@ -22,6 +22,11 @@ from shortGPT.config.languages import (EDGE_TTS_VOICENAME_MAPPING,
                                        Language)
 from shortGPT.engine.content_video_engine import ContentVideoEngine
 from shortGPT.gpt import gpt_chat_video
+from gui.video_gallery import (prepare_gallery,
+                               show_selected_video,
+                               clear_video_details,
+                               refresh_gallery,
+                               initialize_json_file)
 
 
 class Chatstate(Enum):
@@ -394,7 +399,8 @@ class VideoAutomationUI(AbstractComponentUI):
                                             label="Generated Video", 
                                             include_audio=True,
                                             height=400,
-                                            value=self.landscape_sample  # Set default sample to landscape
+                                            value=self.landscape_sample,  # Set default sample to landscape
+                                            elem_id="video_player"
                                         )
                                         self.loading_gif_display = gr.Image(visible=False, show_label=False, show_download_button=False, show_fullscreen_button=False, height=400, width=400)  # Custom HTML for loading video
                                         with gr.Row(visible=True) as self.sample_buttons_row:
@@ -402,7 +408,7 @@ class VideoAutomationUI(AbstractComponentUI):
                                             self.vertical_icon_button = gr.Button("📱 Vertical Sample", variant="secondary")
                                 
                                 # Display the script and used videos below the selected video
-                                self.selected_video_script = gr.Textbox(label="Script", lines=5, visible=False)
+                                self.selected_video_script = gr.Textbox(label="Script", lines=5, visible=False, elem_id="video_details")
                                 self.used_videos_row = gr.Row(visible=False)  # Row to display used videos
 
                             with gr.Column(scale=2.5):
@@ -478,10 +484,24 @@ class VideoAutomationUI(AbstractComponentUI):
                     # Previous Videos Column
                     with gr.Column(scale=2.5):
                         gr.Markdown("## Previous Videos")
-                        self.video_titles_column = gr.Column()  # Column to hold video titles
+                        # self.video_titles_column = gr.Column()  # Column to hold video titles
 
-                        # Add a button to refresh the video display
-                        refresh_button = gr.Button("Refresh Videos", variant="secondary")
+                        # # Add a button to refresh the video display
+                        # refresh_button = gr.Button("Refresh Videos", variant="secondary")
+                        initial_thumbnails = prepare_gallery()
+                        gallery = gr.Gallery(
+                            value=initial_thumbnails,
+                            label=None,
+                            columns=6,
+                            object_fit="contain",
+                            allow_preview=False,
+                            preview=False,
+                            height=200,
+                            show_label=False,
+                            elem_id="gallery"
+                        )
+
+                        refresh_btn = gr.Button("Refresh Gallery")
 
                 # Event Handlers
                 
@@ -589,13 +609,22 @@ class VideoAutomationUI(AbstractComponentUI):
                     # outputs=[gr.File()]
                 )
                 
-                # Refresh videos
-                refresh_button.click(
-                    fn=self.update_video_titles,  # Call the method to update video titles
-                    outputs=[self.video_titles_column]  # Update the column with new video titles
-                )
+                # # Refresh videos
+                # refresh_button.click(
+                #     fn=self.update_video_titles,  # Call the method to update video titles
+                #     outputs=[self.video_titles_column]  # Update the column with new video titles
+                # )
 
                 # Load video titles initially
-                self.update_video_titles()
+                # self.update_video_titles()
+                gallery.select(
+                    fn=show_selected_video,
+                    outputs=[self.sample_video_display, self.selected_video_script]
+                )
+                
+                refresh_btn.click(
+                    fn=lambda: refresh_gallery(),
+                    outputs=[gallery, self.sample_video_display, self.selected_video_script]
+                )
 
             return self.video_automation

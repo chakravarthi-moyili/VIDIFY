@@ -3,6 +3,7 @@
         {
             "_id": "vid_2025-04-02_09-44-35",
             "data": {
+                "thumbnail": "assets/thumbnails/Happy Bottoms.jpg",
                 "generated_video_title": "Happy Bottoms - Advertisement (HD)",
                 "generate_vid_id": "vid_2025-04-02_09-44-35",
                 "generated_video": "assets/videos/2025-04-02_09-44-35 - Discover Happy Bottoms Comfort  Style for Your Baby .mp4",
@@ -75,6 +76,7 @@
         {
             "_id": "2025-04-02_10-07-00",
             "data": {
+                "thumbnail": "assets/thumbnails/Magical Power of Plants.jpg",
                 "generated_video_title": "The Magical Power of Plants Revealed - Education (HD)",
                 "generate_vid_id": "2025-04-02_10-07-00",
                 "generated_video": "assets/videos/2025-04-02_10-07-00 -  The Magical Power of Plants Revealed .mp4",
@@ -141,6 +143,7 @@
         {
             "_id": "2025-04-03_04-55-41",
             "data": {
+                "thumbnail": "assets/thumbnails/SpiceJets Holi Celebration.jpg",
                 "generated_video_title": "SpiceJets Holi Celebration at 30000 Feet - News (SD)",
                 "generate_vid_id": "2025-04-03_04-55-41",
                 "generated_video": "assets/videos/2025-04-03_04-55-41 -  SpiceJets Holi Celebration at 30000 Feet .mp4",
@@ -201,6 +204,7 @@
         {
             "_id": "vid_2025-04-02_10-22-42",
             "data": {
+                "thumbnail": "assets/thumbnails/Zomato Buy Now.jpg",
                 "generated_video_title": "Zomato Set to Soar - Stock Market (SD)",
                 "generate_vid_id": "vid_2025-04-02_10-22-42",
                 "generated_video": "assets/videos/2025-04-02_10-22-42 -  Zomato Buy Now Target Price Rs 280 .mp4",
@@ -291,6 +295,7 @@
         {
             "_id": "2025-04-03_05-19-51",
             "data": {
+                "thumbnail": "assets/thumbnails/Chandrayaan 3 Indias Lunar Mission.jpg",
                 "generated_video_title": "Chandrayaan 3 Indias Lunar Mission - Science & Technology (4k)",
                 "generate_vid_id": "2025-04-03_05-19-51",
                 "generated_video": "assets/videos/2025-04-03_05-19-51 - Chandrayaan 3 Indias Lunar Mission Success .mp4",
@@ -339,6 +344,7 @@
         {
             "_id": "vid_2025-04-03_05-32-10",
             "data": {
+                "thumbnail": "assets/thumbnails/Social Media Scams.jpg",
                 "generated_video_title": "Stay Safe from Social Media Scams - Awareness (4k)",
                 "generate_vid_id": "vid_2025-04-03_05-32-10",
                 "generated_video": "assets/videos/2025-04-03_05-32-10 - Stay Safe from Social Media Scams .mp4",
