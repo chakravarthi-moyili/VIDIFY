@@ -367,10 +367,12 @@ class VideoAutomationUI(AbstractComponentUI):
 
                         with gr.Row(visible=True) as self.dynamic_logo:
                             with gr.Column():
-                                logo_image = gr.Image(type='filepath', 
-                                        show_label=True,
-                                        label="Drop your logo here...",
-                                        mirror_webcam=False)
+                                logo_image = gr.Image(type='filepath',
+                                                      sources=["upload"],
+                                                      show_label=True,
+                                                      placeholder=f'Upload your Image in ".png" format',
+                                                      label="Drop your logo here...",
+                                                      mirror_webcam=False)
                                 # # Add change event handler to process the uploaded image
                                 # logo_image.change(
                                 #     fn=self.process_logo_image,
@@ -496,7 +498,7 @@ class VideoAutomationUI(AbstractComponentUI):
                             object_fit="contain",
                             allow_preview=False,
                             preview=False,
-                            height=200,
+                            height="200px",
                             show_label=False,
                             elem_id="gallery"
                         )
@@ -524,6 +526,10 @@ class VideoAutomationUI(AbstractComponentUI):
 
                 # Connect the button click event
                 self.use_logo_btn.click(
+                    fn=lambda: [
+                        gr.Info("The uploaded image will be used as a watermark on the video.")
+                    ]
+                ).then(
                     fn=self.set_watermark_logo,
                     inputs=[logo_image],
                     outputs=[]
@@ -619,12 +625,12 @@ class VideoAutomationUI(AbstractComponentUI):
                 # self.update_video_titles()
                 gallery.select(
                     fn=show_selected_video,
-                    outputs=[self.sample_video_display, self.selected_video_script]
+                    outputs=[self.selected_video_script, self.sample_video_display, self.sample_buttons_row]
                 )
                 
                 refresh_btn.click(
-                    fn=lambda: refresh_gallery(),
-                    outputs=[gallery, self.sample_video_display, self.selected_video_script]
+                    fn=refresh_gallery,
+                    outputs=[gallery]
                 )
 
             return self.video_automation

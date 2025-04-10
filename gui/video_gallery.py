@@ -1,5 +1,6 @@
 import json
 import os
+import gradio as gr
 
 # Path to your JSON file
 JSON_FILE_PATH = "videosDatabase/videos_database.json"
@@ -40,7 +41,7 @@ def prepare_gallery():
     return gallery_images
 
 # Function to show video details when selected
-def show_selected_video(evt):
+def show_selected_video(evt: gr.SelectData):
     """Display video title and script for the selected video."""
     selected_index = evt.index
     
@@ -49,12 +50,14 @@ def show_selected_video(evt):
         data = selected_video.get("data", {})
         title = data.get("generated_video_title", "Untitled")
         script = data.get("used_script", "No script available")
-        video_path = data.get("generated_video", "")
+        generted_video = data.get("generated_video", "")
         
+        print(f"Selected video index: {selected_index}, path: {generted_video}")
+
         # Prepare markdown content
-        markdown_content = f"## {title}\n\n{script}"
+        # markdown_content = f"## {title}\n\n{script}"
         
-        return markdown_content, video_path
+        return gr.update(value=script, visible=True), gr.update(value=generted_video, visible=True), gr.update(visible=False)
     
     return "No video selected", None
 
@@ -67,7 +70,7 @@ def clear_video_details():
 def refresh_gallery():
     """Reload gallery data from JSON file."""
     thumbnails = prepare_gallery()
-    return thumbnails, "", None
+    return thumbnails
 
 # Check if JSON file exists, create example if it doesn't
 def initialize_json_file():
