@@ -46,6 +46,7 @@ class VideoAutomationUI(AbstractComponentUI):
         self.video_html = ""
         self.video_path = ""
         self.video_automation = None
+        self.video_source = ""
         self.api_source = "Pexels"  # Default API source
         self.text_position = "Middle"  # Changed default to Middle
         self.quality = "4k"  # Changed default to 4k
@@ -105,7 +106,7 @@ class VideoAutomationUI(AbstractComponentUI):
         except Exception as e:
             return False, f"Error setting up voice module: {str(e)}"
 
-    def make_video(self, script, orientation_choice, text_position, quality, duration, language, progress=gr.Progress()):
+    def make_video(self, script, video_source, orientation_choice, text_position, quality, duration, language, progress=gr.Progress()):
         """Generate the video based on script and settings"""
         self.state = Chatstate.MAKE_VIDEO
         print(f"Video Language - {language} ")
@@ -119,6 +120,7 @@ class VideoAutomationUI(AbstractComponentUI):
         self.text_position = text_position
         self.quality = quality
         self.duration = duration
+        self.video_source = video_source
 
         # Set up voice module
         # success, message = self.setup_voice_module(self.language)
@@ -137,6 +139,7 @@ class VideoAutomationUI(AbstractComponentUI):
                 voiceModule=self.voice_module, 
                 script=script, 
                 isVerticalFormat=self.isVertical,
+                video_data_source = self.video_source,
                 api_source=self.api_source,
                 text_position=self.text_position,
                 quality=self.quality,
@@ -420,6 +423,14 @@ class VideoAutomationUI(AbstractComponentUI):
                                         
                                         with gr.Row():
                                             with gr.Column(scale=1):
+                                                gr.Markdown("### Dataset")
+                                                self.video_source = gr.Dropdown(
+                                                    choices=["Local", "Stock"], 
+                                                    label="Source",
+                                                    value="Stock"
+                                                )
+                                        with gr.Row():
+                                            with gr.Column(scale=1):
                                                 gr.Markdown("### Orientation")
                                                 self.orientation_dropdown = gr.Dropdown(
                                                     choices=["Vertical", "Landscape"], 
@@ -581,6 +592,7 @@ class VideoAutomationUI(AbstractComponentUI):
                     fn=self.make_video,
                     inputs=[
                         self.script_output,
+                        self.video_source,
                         self.orientation_dropdown,
                         self.text_position_dropdown,
                         self.quality_dropdown,

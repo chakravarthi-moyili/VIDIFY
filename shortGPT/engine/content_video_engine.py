@@ -10,6 +10,7 @@ import ffmpeg
 
 from shortGPT.api_utils.pexels_api import getBestVideo as getBestVideoPexels
 from shortGPT.api_utils.pixabay_api import get_best_video_pixabay as getBestVideoPixabay
+from shortGPT.api_utils.own_dabase import get_best_local_video
 from shortGPT.audio import audio_utils
 from shortGPT.audio.audio_duration import get_asset_duration
 from shortGPT.audio.voice_module import VoiceModule
@@ -27,7 +28,7 @@ from shortGPT.database.db_handler import VideoMetadataDB
 class ContentVideoEngine(AbstractContentEngine):
 
     def __init__(self, voiceModule: VoiceModule, script: str, background_music_name="", id="",
-                 watermark_logo=None, isVerticalFormat=False, language: Language = Language.ENGLISH, api_source = "Pexels", text_position = "Middle", quality = "HD"):
+                 watermark_logo=None, isVerticalFormat=False, language: Language = Language.ENGLISH, video_data_source="Stock", api_source = "Pexels", text_position = "Middle", quality = "HD"):
         super().__init__(id, "general_video", language, voiceModule)
         if not id:
             if (watermark_logo):
@@ -37,6 +38,7 @@ class ContentVideoEngine(AbstractContentEngine):
                 self._db_background_music_name = background_music_name
             self._db_script = script
             self._db_format_vertical = isVerticalFormat
+            self.video_data_source = video_data_source
             self.api_source = api_source
             self.text_position = text_position
             self.quality = quality
@@ -109,7 +111,9 @@ class ContentVideoEngine(AbstractContentEngine):
         for (t1, t2), search_terms in timed_video_searches:
             url = ""
             for query in reversed(search_terms):
-                if self.api_source == "Pexels":
+                if self.video_data_source == "Local":
+                    url = get_best_local_video(query, orientation_landscape=not self._db_format_vertical, used_vids=used_links)
+                elif self.api_source == "Pexels":
                     url = getBestVideoPexels(query, orientation_landscape=not self._db_format_vertical, used_vids=used_links)
                 elif self.api_source == "Pixabay":
                     url = getBestVideoPixabay(query, orientation_landscape=not self._db_format_vertical, used_vids=used_links)

@@ -6,6 +6,13 @@ chat_prompt: |
 
   For each time segment (4-5 seconds long), you need to suggest 3 alternative search queries that could be used to find appropriate video footage. Each query must be 1-2 words and should describe concrete, visual scenes or actions.
 
+  The search queries should:
+  - Be short (1–2 words)
+  - Be highly visual and literal (describe scenes, actions, or objects)
+  - Be family-friendly and suitable for YouTube Shorts, Instagram Reels, and TikTok
+  - Reflect and summerise the actual words or visuals in the transcript
+  - Avoid vague, abstract, emotional, or poetic language
+
   Guidelines for queries:
   1. Use ONLY English words
   2. Keep queries between 1-2 words
@@ -13,6 +20,11 @@ chat_prompt: |
   4. Avoid abstract concepts
   5. Include both static and dynamic scenes
   6. Ensure queries are family-friendly and safe for monetization
+  7. Include real-world names (e.g., "Einstein", "India", "ISRO") as 1-2 word queries, and auto-correct misspellings based on likely context (e.g., cinema, science, sports).
+  8. Generate search queries based on the overall video length, dividing it into segments of approximately 4–5 seconds, and always include the final segment, even if it's shorter than 4 seconds.
+  9. Divide the video into segments of approximately 4–5 seconds, and always include the final segment, even if it’s shorter than 4 seconds, to ensure the entire video duration is covered with no gaps.
+
+
 
   Good examples:
   - "ocean waves"
@@ -24,7 +36,7 @@ chat_prompt: |
   - "beautiful nature landscape morning sun" (too many words)
   - "confused thoughts" (not visual)
 
-  The output must be valid JSON in this format:
+  The output must be valid JSON in this format (this is an example):
   {
     "video_segments": [
       {
@@ -41,6 +53,7 @@ chat_prompt: |
   Timed captions:
   <<TIMED_CAPTIONS>>
 
-  Generate video segments of 4-5 seconds covering the entire video duration.
+  Generate video segments of 4-5 seconds covering the entire video duration and always include the final segment, even if it's shorter than 4 seconds.
+  Divide the video into segments of approximately 4–5 seconds, and always include the final segment, even if it’s shorter than 4 seconds, to ensure the entire video duration is covered with no gaps.
   Make sure to perfectly fit the end of the video, with the EXACT same floating point accuracy as in the transcript above.
   Output ONLY the JSON response, no additional text.
