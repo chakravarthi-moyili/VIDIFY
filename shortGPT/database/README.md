@@ -1,10 +1,11 @@
 # Database Module Documentation
 
-The `database` module provides classes for managing database documents and data in the ShortGPT application. The module consists of three files:
+The `database` module provides classes for managing database documents and data in the VIDIFY application. The module consists of three files:
 
 - `content_data_manager.py`: Defines the `ContentDataManager` class, which manages the content data for a document in the database.
 - `content_database.py`: Defines the `ContentDatabase` class, which provides methods for creating and accessing `ContentDataManager` instances.
 - `db_document.py`: Defines the `DatabaseDocument` abstract base class and the `TinyMongoDocument` class, which represents a document in a TinyMongo database.
+- `db_handler.py`: Defines the `VideoMetadataDB` class, which manages video metadata using a thread-safe, singleton-based JSON file database. It supports operations to insert, retrieve, update, delete, and list video data.
 
 ## File: content_data_manager.py
 
@@ -145,3 +146,67 @@ The `db_document.py` file contains the `DatabaseDocument` abstract base class an
 #### `__str__(self)`
 
 - Returns a string representation of the document.
+
+## File: `db_handler.py`
+
+This file contains the `VideoMetadataDB` class, which is responsible for managing video metadata using a JSON-based storage system. It follows the Singleton pattern and ensures thread-safe access to video records.
+
+### Class: `VideoMetadataDB`
+
+### `__new__(cls)`
+
+- Creates and returns the single instance of `VideoMetadataDB` using the Singleton pattern.
+- Ensures thread-safe instantiation across threads.
+
+### `_initialize_db(self)`
+
+- Initializes the database by creating the JSON file and directory if they don’t exist.
+- Loads existing video data into memory.
+
+### `_load_data(self)`
+
+- Loads video metadata from the JSON file into memory.
+- Returns:
+  - A dictionary containing the current state of video metadata.
+
+### `insert_video_data(self, video_data)`
+
+- Inserts a new video metadata record into the database.
+- Parameters:
+  - `video_data`: A dictionary containing video metadata, including a unique `generate_vid_id`.
+- Returns:
+  - `True` if insertion is successful, otherwise `False`.
+
+### `_save_data(self)`
+
+- Saves the in-memory video metadata back to the JSON file.
+
+### `get_video_data(self, video_id)`
+
+- Retrieves metadata for a specific video by its ID.
+- Parameters:
+  - `video_id`: The unique identifier for the video.
+- Returns:
+  - A dictionary of the video metadata if found, otherwise `None`.
+
+### `update_video_data(self, video_id, updates)`
+
+- Updates the metadata of a specific video.
+- Parameters:
+  - `video_id`: The unique identifier of the video to update.
+  - `updates`: A dictionary containing the updated metadata.
+- Returns:
+  - `True` if update is successful, otherwise `False`.
+
+### `delete_video_data(self, video_id)`
+
+- Deletes metadata for a specific video by its ID.
+- Parameters:
+  - `video_id`: The unique identifier of the video to delete.
+- Returns:
+  - `True` if deletion is successful, otherwise `False`.
+
+### `list_all_videos(self)`
+- Returns a list of all video metadata stored in the database.
+- Returns:
+  - A list of dictionaries, each representing a video's metadata.

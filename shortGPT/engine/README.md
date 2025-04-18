@@ -88,7 +88,7 @@ This file contains the `ContentVideoEngine` class, which is used for generating 
 
 - `__generateVideoSearchTerms(self)`: Generates the video search terms by using the timed captions.
 
-- `__generateVideoUrls(self)`: Generates the video URLs by using the video search terms and the `getBestVideo` function from the `pexels_api`.
+- `__generateVideoUrls(self)`: Generates the video URLs by using the video search terms and the `getBestVideo` function from any one of the three databse `pexels api`, `pixabay api`, or `local database`.
 
 - `__chooseBackgroundMusic(self)`: Retrieves the background music URL from the `assetStore` based on the background music name.
 

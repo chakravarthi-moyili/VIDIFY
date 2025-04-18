@@ -36,7 +36,7 @@ This function opens and reads a file and returns its contents as a string. It ta
 
 ### `llm_completion(chat_prompt="", system="You are an AI that can give the answer to anything", temp=0.7, model="gpt-3.5-turbo", max_tokens=1000, remove_nl=True, conversation=None)`
 
-This function performs a GPT-3 completion using the OpenAI API. It takes various parameters such as chat prompt, system prompt, temperature, model, and maximum tokens. It returns the generated text as a response from the GPT-3 model.
+This function generates a language model response using either the Gemini or OpenAI API, based on available API keys. It supports system prompts, chat history, temperature, and token limits, and returns the generated text.
 
 ## File: reddit_gpt.py
 

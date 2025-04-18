@@ -34,6 +34,44 @@ This function takes a query string and an optional boolean parameter `orientatio
 
 This function takes a query string, an optional boolean parameter `orientation_landscape`, and an optional list `used_vids` as input. It calls the `search_videos` function to retrieve a list of videos based on the query string. It then filters and sorts the videos based on their dimensions and duration, and returns the URL of the best matching video. The `used_vids` parameter can be used to exclude previously used videos from the search results.
 
+## File: pixabay_api.py
+
+This file contains functions for interacting with the Pixabay API and retrieving image and video URLs based on a query string.
+
+### Functions:
+
+### `search_images(query_string, orientation_landscape=True)`
+
+This function takes a query string and an optional boolean parameter `orientation_landscape` as input. It sends a GET request to the Pixabay API to search for images based on the query string. The orientation of the images can be specified as landscape or portrait. The function returns the JSON response from the API.
+
+### `get_best_image(query_string, orientation_landscape=True, used_images=[])`
+
+This function takes a query string, an optional boolean parameter `orientation_landscape`, and an optional list `used_images` as input. It calls the `search_images` function to retrieve a list of images based on the query string. It then filters and sorts the images based on their dimensions and download count, and returns the URL of the best matching image. The `used_images` parameter can be used to exclude previously used images from the search results.
+
+### `search_videos_pixabay(query_string, orientation_landscape=True)`
+
+This function takes a query string and an optional boolean parameter `orientation_landscape` as input. It sends a GET request to the Pixabay Videos API to search for videos based on the query string. The orientation of the videos can be specified as landscape or portrait. The function returns the JSON response from the API.
+
+### `get_best_video_pixabay(query_string, orientation_landscape=True, used_vids=[])`
+
+This function takes a query string, an optional boolean parameter `orientation_landscape`, and an optional list `used_vids` as input. It calls the `search_videos_pixabay` function to retrieve a list of videos based on the query string. It then filters and sorts the videos based on their dimensions and download count, and returns the URL of the best matching video. The `used_vids` parameter can be used to exclude previously used videos from the search results.
+
+## File: own_database:
+
+This file contains functions for searching and retrieving videos from a local database based on a query string.
+
+### Functions:
+
+### `load_local_video_db(file_path="own_video_dataset/dataset_local.json")`
+This function takes an optional file path parameter as input and loads a local video database from a JSON file. It returns the loaded JSON data.
+
+### `search_local_videos(query_string, orientation_landscape=True, db=None)`
+This function takes a query string, an optional boolean parameter `orientation_landscape`, and an optional database parameter `db` as input. If no database is provided, it calls the `load_local_video_db` function to load the database. It then searches the database for videos that match the query string and the specified orientation. The function returns a list of matching videos.
+
+### `get_best_local_video(query_string, orientation_landscape=True, used_vids=[], db=None)`
+
+This function takes a query string, an optional boolean parameter `orientation_landscape`, an optional list `used_vids`, and an optional database parameter `db` as input. It calls the `search_local_videos` function to retrieve a list of videos that match the query string and orientation. It then filters the videos based on their resolution and whether they have been used before. The function returns the URL of the first matching video, or None if no suitable videos are found.
+
 ## File: eleven_api.py
 
 This file contains functions for interacting with the Eleven API and generating voice recordings based on text input.
