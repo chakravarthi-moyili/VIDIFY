@@ -5,8 +5,7 @@ import re
 import shutil
 import traceback
 import ffmpeg
-# import subprocess
-# subprcess is to generate thumnails
+import subprocess
 
 from shortGPT.api_utils.pexels_api import getBestVideo as getBestVideoPexels
 from shortGPT.api_utils.pixabay_api import get_best_video_pixabay as getBestVideoPixabay
@@ -241,10 +240,9 @@ class ContentVideoEngine(AbstractContentEngine):
             clean_title = re.sub('[^a-zA-Z0-9 \'\\n\\.]', '', self._db_yt_title)
             newFileName = f"videos/{now.strftime('%Y-%m-%d_%H-%M-%S')} - {clean_title}"
 
-            # # Generate Thumbnail for video
-            # input_video_path= self._db_video_path
-            # output_thumbnail_image = 'thumbnail.jpg'
-            # subprocess.call(['ffmpeg', '-i', input_video_path, '-ss', '00:00:01.000', '-vframes', '1', output_thumbnail_image])
+            # Generate Thumbnail for video
+            self._db_thumbnail_path = newFileName + ".jpeg"
+            subprocess.call(['ffmpeg', '-i', self._db_video_path, '-ss', '00:00:01.000', '-vframes', '1', '-update', '1', self._db_thumbnail_path])
 
             # Check if source video exists
             if not os.path.exists(self._db_video_path):
@@ -262,6 +260,7 @@ class ContentVideoEngine(AbstractContentEngine):
             # Prepare video data
             video_data = {
                 "generate_vid_id": now.strftime("vid_%Y-%m-%d_%H-%M-%S"),
+                "thumbnail": self._db_thumbnail_path,
                 "generated_video": self._db_video_path,
                 "used_script": self._db_script,
                 "orientation": "vertical" if self._db_format_vertical else "landscape",
